@@ -1,13 +1,13 @@
 {
-  "name": "one-more-blog",
+  "name": "react-boilerplate",
   "version": "1.0.0",
-  "description": "Another blog about working in IT.",
+  "description": "Boilerplate for react&redux projects. Using webpack, less, react, redux",
   "main": "src/app.js",
   "scripts": {
     "start": "webpack && webpack-dev-server --hot"
   },
   "author": "electricSemyon",
-  "license": "ISC",
+  "license": "no license",
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
