@@ -4,7 +4,7 @@
   "description": "Boilerplate for react&redux projects. Using webpack, less, react, redux",
   "main": "src/app.js",
   "scripts": {
-    "start": "webpack && webpack-dev-server --hot"
+    "start": "webpack -d --watch & webpack-dev-server --hot"
   },
   "author": "electricSemyon",
   "license": "no license",
