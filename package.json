@@ -4,7 +4,8 @@
   "description": "Boilerplate for react&redux projects. Using webpack, less, react, redux",
   "main": "src/app.js",
   "scripts": {
-    "start": "webpack -d --watch & webpack-dev-server --hot --port 3000"
+    "start": "webpack -d --watch & webpack-dev-server --hot --port 3000",
+    "build": "webpack"
   },
   "author": "electricSemyon",
   "license": "no license",
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "formsy-react": "^0.19.5",
     "material-ui": "^0.18.3",
     "node-sass": "^4.5.3",
     "react": "^15.6.1",
