@@ -1,0 +1,73 @@
+import React from 'react';
+import Header from '../header/header.component.jsx';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import Grid from 'material-ui/Grid';
+
+import Input from '../input-field/validating-input.component.jsx';
+import validate from '../../utils/validate';
+
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: '',
+    }
+
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin(event) {
+    event.preventDefault();
+    this.props.login({
+      email: this.state.email,
+      password: this.state.password
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <Header></Header>
+        <Grid container gutter={0} justify="center">
+          <Grid className="ribbon" item xs={12} style={{'height': '100px', 'backgroundColor': '#5C6BC0', 'zIndex': -1}}></Grid>
+
+          <Grid item xs={12} sm={6} md={4}>
+            <Paper elevation={4} style={{'padding': '20px', 'marginTop': '-50px'}}>
+              <form onSubmit={this.handleLogin}>
+                <Typography type="headline" component="h2"> LOGIN </Typography>
+
+                <Input label="Email" type="email" fullWidth={true}
+                       handleChange={value => this.setState({email: value})}
+                       validate={value => validate('email', value)}/>
+
+                <Input label="Password" type="password" fullWidth={true}
+                       handleChange={value => this.setState({password: value})}
+                       validate={value => validate('password', value)}/>
+
+                <div className="login-buttons-container" style={{'textAlign': 'right'}}>
+                  <Button style={{margin: '16px'}}> SIGN UP </Button>
+                  <Button type="submit" color="primary" raised style={{'marginTop': '16px'}}> LOG IN </Button>
+                </div>
+
+                <div className="login-with-services" style={{display: 'flex', 'justifyContent': 'space-between'}}>
+                  <Button raised style={{width: '45%'}}>
+                    LOG IN WITH GOOGLE
+                  </Button>
+                  <Button raised style={{width: '45%'}}>
+                    LOG IN WITH GITHUB
+                  </Button>
+                </div>
+              </form>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
+}
+
+export default Login;

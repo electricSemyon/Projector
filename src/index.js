@@ -5,20 +5,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux';
 
-import './styles/main.scss';
+import configureStore from './store/configure-store';
+import './style/main.scss';
 
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers/index';
+const store = configureStore();
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
-);
-
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import Home from './components/Home';
+import Login from './containers/login.container.jsx';
+import Signup from './containers/signup.container.jsx';
 
 injectTapEventPlugin();
 
@@ -29,9 +22,9 @@ class Root extends React.Component {
         <Provider store={store}>
           <BrowserRouter>
             <div>
-              <Route exact path="/" component={Home} />
-              <Route path="/signup" component={SignUp} />
+              <Route exact path="/" component={() => <div></div>} />
               <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
             </div>
           </BrowserRouter>
         </Provider>

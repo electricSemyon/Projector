@@ -100,12 +100,26 @@ class LoginForm extends Component {
   }
 
   handleSignUp() {
-    this.props.signUp({
-      name: this.state.username,
-      email: this.state.login,
-      password: this.state.password,
-      token: this.state.captchaToken
-    });
+    getBase64(this.refs.avatarImage.files[0])
+      .then((avatar) => {
+        const data = new FormData();
+
+        data.append('name', this.state.fields.username.value);
+        data.append('email', this.state.fields.login.value);
+        data.append('password', this.state.fields.password.value);
+        data.append('avatar', this.refs.avatarImage.files[0]);
+        data.append('token', this.state.fields.captchaToken)
+
+        //axios.post('http://httpbin.org/post', data);
+        this.props.signUp(data);
+        // {
+        // name: this.state.fields.username.value,
+        // email: this.state.fields.login.value,
+        // password: this.state.fields.password.value,
+        // avatar: this.refs.avatarImage.files[0],
+        //
+        // }
+      });
   }
 
   render() {
@@ -150,6 +164,13 @@ class LoginForm extends Component {
                       onChange={this.handleConfirmPasswordChange}
                       validate={this.validatePasswordConfirmation}
           />
+
+          <input type="file" name="avatar" className="upload-avatar" ref="avatarImage" accept="image/x-png, image/gif, image/jpeg">
+            <RaisedButton label="SIGN UP"
+              className="avatar-button"
+              fullWidth={true}
+              primary={true}/>
+          </input>
 
           <div id="google-captcha"></div>
 
