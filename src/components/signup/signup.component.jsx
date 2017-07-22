@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../header/header.component.jsx';
+import Header from '../../containers/header.container.jsx';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
@@ -15,6 +15,7 @@ class Signup extends React.Component {
     this.state = { email: '', password: '', username: '', captchaToken: '', avatar: '' };
     this.handleSignup = this.handleSignup.bind(this);
     this.handleAvatarUpload = this.handleAvatarUpload.bind(this);
+    this.checkFields = this.checkFields.bind(this);
   }
 
   componentDidMount() {
@@ -26,7 +27,6 @@ class Signup extends React.Component {
   }
 
   handleAvatarUpload(avatar) {
-    console.log(avatar)
     this.setState({avatar: avatar});
   }
 
@@ -34,22 +34,34 @@ class Signup extends React.Component {
     e.preventDefault();
 
     const data = new FormData();
-    console.log(this.state.avatar)
+
     data.append('name', this.state.username);
     data.append('email', this.state.email);
     data.append('password', this.state.password);
-    data.append('avatar', this.state.avatar);
     data.append('token', this.state.captchaToken)
+
+    if(this.state.avatar)
+      data.append('avatar', this.state.avatar);
     //console.log(data)
     this.props.signUp(data);
+  }
+
+  checkFields() {
+    const {email, password, username, captchaToken, ...other} = this.state;
+    const v = validate;
+
+    return !(v('email', email)
+      && v('password', password)
+      && v('username', username)
+      && captchaToken)
   }
 
   render() {
     return (
       <div>
-        <Header></Header>
+        <Header/>
         <Grid container gutter={0} justify="center">
-          <Grid className="ribbon" item xs={12} style={{'height': '100px', 'backgroundColor': '#5C6BC0', 'zIndex': -1}}></Grid>
+          <Grid className="ribbon" item xs={12} style={{'height': '200px', 'backgroundColor': '#5C6BC0', 'zIndex': -1}}></Grid>
 
           <Grid item xs={12} sm={6} md={4}>
             <Paper elevation={4} style={{'padding': '20px', 'marginTop': '-50px'}}>
@@ -59,6 +71,10 @@ class Signup extends React.Component {
                 <Input label="Email" type="email" fullWidth={true}
                        handleChange={value => this.setState({email: value})}
                        validate={value => validate('email', value)}/>
+
+                <Input label="Username" type="text" fullWidth={true}
+                       handleChange={value => this.setState({username: value})}
+                       validate={value => validate('username', value)}/>
 
                 <Input label="Password" type="password" fullWidth={true}
                        handleChange={value => this.setState({password: value})}
@@ -72,7 +88,7 @@ class Signup extends React.Component {
                 <div id="google-captcha"></div>
 
                 <div className="login-buttons-container" style={{'textAlign': 'right'}}>
-                  <Button type="submit" color="primary" raised style={{'marginTop': '16px'}}> SIGN UP </Button>
+                  <Button type="submit" color="primary" disabled={this.checkFields()} raised style={{'marginTop': '16px'}}> SIGN UP </Button>
                 </div>
               </form>
             </Paper>

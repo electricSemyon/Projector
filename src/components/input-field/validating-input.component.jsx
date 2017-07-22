@@ -24,7 +24,6 @@ class Input extends Component {
   validate(value) {
     this.setState({ isDirty: true });
     this.setState({ isValid: this.props.validate(value) });
-    console.log(this.state)
   }
   render() {
     return (

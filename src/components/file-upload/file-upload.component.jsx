@@ -18,7 +18,7 @@ class UploadFile extends Component {
 
     reader.onloadend = (e) => this.setState({ imgSrc: [reader.result] });
 
-    this.props.handleUpload(this.state.imgSrc);
+    this.props.handleUpload(file);
   }
 
   render() {
@@ -26,7 +26,7 @@ class UploadFile extends Component {
       <div className="upload-file">
         <Button {...this.props.buttonStyle}
                 onClick={() => this.refs.file.click()}>{this.props.text}</Button>
-        <img ref="img" width="32" height="32" src={this.state.imgSrc} style={{marginLeft: '8px', verticalAlign: 'middle', borderRadius: '50%'}}/>
+        <img ref="img" width="32" height="32" src={this.state.imgSrc} className="" style={{marginLeft: '8px', verticalAlign: 'middle', borderRadius: '50%'}}/>
         <input
           ref="file"
           type="file"

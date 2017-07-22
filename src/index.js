@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route, browserHistory, Redirect } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux';
-
 import configureStore from './store/configure-store';
 import './style/main.scss';
 
-const store = configureStore();
+import Routes from './routes/routes.jsx';
+import App from './components/app.component.jsx';
 
-import Login from './containers/login.container.jsx';
-import Signup from './containers/signup.container.jsx';
+const store = configureStore();
+store.subscribe(() => console.log(store.getState()))
+const history = syncHistoryWithStore(browserHistory, store);
 
 injectTapEventPlugin();
 
@@ -20,13 +22,11 @@ class Root extends React.Component {
     return (
       <MuiThemeProvider>
         <Provider store={store}>
-          <BrowserRouter>
-            <div>
-              <Route exact path="/" component={() => <div></div>} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-            </div>
-          </BrowserRouter>
+          <App>
+            <Router history={history}>
+              {Routes}
+            </Router>
+          </App>
         </Provider>
       </MuiThemeProvider>
     )

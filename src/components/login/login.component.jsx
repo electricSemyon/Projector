@@ -1,12 +1,14 @@
 import React from 'react';
-import Header from '../header/header.component.jsx';
+import Header from '../../containers/header.container.jsx';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Grid from 'material-ui/Grid';
+import { Link } from 'react-router';
 
 import Input from '../input-field/validating-input.component.jsx';
 import validate from '../../utils/validate';
+import './login.style.scss';
 
 class Login extends React.Component {
   constructor(props) {
@@ -25,15 +27,15 @@ class Login extends React.Component {
     this.props.login({
       email: this.state.email,
       password: this.state.password
-    });
+    })
   }
 
   render() {
     return (
       <div>
-        <Header></Header>
+        <Header/>
         <Grid container gutter={0} justify="center">
-          <Grid className="ribbon" item xs={12} style={{'height': '100px', 'backgroundColor': '#5C6BC0', 'zIndex': -1}}></Grid>
+          <Grid className="ribbon" item xs={12} style={{'height': '200px', 'backgroundColor': '#5C6BC0', 'zIndex': -1}}></Grid>
 
           <Grid item xs={12} sm={6} md={4}>
             <Paper elevation={4} style={{'padding': '20px', 'marginTop': '-50px'}}>
@@ -49,7 +51,9 @@ class Login extends React.Component {
                        validate={value => validate('password', value)}/>
 
                 <div className="login-buttons-container" style={{'textAlign': 'right'}}>
-                  <Button style={{margin: '16px'}}> SIGN UP </Button>
+                  <Link to="/signup" >
+                    <Button style={{margin: '16px'}}> SIGN UP </Button>
+                  </Link>
                   <Button type="submit" color="primary" raised style={{'marginTop': '16px'}}> LOG IN </Button>
                 </div>
 

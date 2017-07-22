@@ -5,10 +5,10 @@ export default (type, value) => {
         .test(value);
 
     case 'password':
-      return value && value.length >= 4;
+      return !!(value && value.length >= 6);
 
-    case 'passwordConfirm':
-      return value.reduce((a, b) => (a === b) ? a : false);
+    case 'username':
+      return !!(value && value.length >= 4);
 
     default:
       return false;

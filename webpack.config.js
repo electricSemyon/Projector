@@ -23,6 +23,10 @@ module.exports = {
         }, {
           loader: "sass-loader" // compiles Sass to CSS
         }]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: "file-loader?name=[name].[ext]"
       }
     ],
   },
@@ -31,7 +35,7 @@ module.exports = {
     contentBase: './',
     proxy: [
       {
-        context: ['/auth', '/api'],
+        context: ['/auth', '/api', '/uploads'],
         target:'https://trellolo.com',
         changeOrigin: true //35.187.65.10 || 192.168.88.113
       }

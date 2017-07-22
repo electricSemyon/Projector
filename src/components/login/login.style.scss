@@ -1,0 +1,7 @@
+.login-buttons-container a{
+  text-decoration: none !important;
+  &:focus {
+    text-decoration: none !important;
+    color: inherit
+  };
+}

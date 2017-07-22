@@ -1,0 +1,10 @@
+a.dropdown {
+  text-decoration: none;
+  color: #ddd;
+  transition: all ease-out .3s;
+
+  &:focus  { color: #a9a9a9; }
+  &:visited{ color: #a9a9a9; }
+  &:active { color: #a9a9a9; }
+  &:hover  { color: #f4f4f4; }
+}
