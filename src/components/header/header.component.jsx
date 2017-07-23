@@ -8,7 +8,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 
 import Show from '../show-if/show.jsx';
 import UserMenu from '../user-menu/user-menu.component.jsx';
-import Dropdown from '../dropdown/dropdown.component.jsx';
+import Dropdown from '../dropdown/dropdown.container.jsx';
 
 import './header.style.scss';
 

@@ -42,7 +42,7 @@ class Signup extends React.Component {
 
     if(this.state.avatar)
       data.append('avatar', this.state.avatar);
-    //console.log(data)
+
     this.props.signUp(data);
   }
 

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack -d --watch & webpack-dev-server --hot --port 3000",
     "build": "webpack",
-    "test": "mocha --compilers js:babel-register --recursive"
+    "test": "mocha --compilers js:babel-register --recursive",
+    "lint": "eslint ."
   },
   "author": "electricSemyon",
   "license": "no license",
@@ -19,6 +20,11 @@
     "babel-preset-react": "^6.24.1",
     "compression-webpack-plugin": "^1.0.0",
     "css-loader": "^0.28.0",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.1.0",
     "file-loader": "^0.11.2",
     "style-loader": "^0.16.1",
     "webpack": "^2.4.1",

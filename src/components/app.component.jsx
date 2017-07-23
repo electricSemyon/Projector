@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import auth from '../actions/auth';
+import projects from '../actions/projects';
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.props.getUser();
+    this.props.getUser()
+      .then(() => this.props.getProjectsList())
   }
 
   render() {
@@ -24,7 +26,10 @@ const mapStateToProps = store => ({store: store });
 const mapDispatchToProps = dispatch => {
   return {
     getUser() {
-      dispatch(auth.getUser());
+      return dispatch(auth.getUser());
+    },
+    getProjectsList() {
+      dispatch(projects.getProjectsList());
     }
   }
 }

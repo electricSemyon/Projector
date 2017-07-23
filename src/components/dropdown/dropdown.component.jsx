@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Button from 'material-ui/Button';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import KeyboardArrowDownIcon from 'material-ui-icons/KeyboardArrowDown';
+import Avatar from 'material-ui/Avatar';
 import './dropdown.style.scss';
 
 import Icon from 'material-ui-icons/Schedule';
-import NewProjectPopup from '../new-project-popup/new-project-popup.component.jsx';
+import NewProjectPopup from '../../containers/new-project-popup.container.jsx';
 
 const MenuIcon = props => <div style={{marginRight: '8px'}}>{props.children}</div>
 
@@ -15,13 +16,10 @@ class Dropdown extends Component {
     this.state = {
       open: false,
       anchor: null,
-      currentProject: this.props.currentProject,
-      projects: [
-        { title: 'Some Shitty Project' },
-        { title: 'One More Shitty Project' }
-      ],
+      currentProject: { title: 'First Shitty Project' },
       newProjectPopupOpened: false
     }
+    console.log('state', this.state.projects)
 
     this.handleRequestClose = this.handleRequestClose.bind(this);
   }
@@ -31,10 +29,10 @@ class Dropdown extends Component {
   }
 
   renderExistingProjects() {
-    return this.state.projects.map((project, i) =>
+    return (this.props.list || []).map((project, i) =>
       <MenuItem key={i}>
         <MenuIcon>
-          <Icon/>
+          <Avatar alt="Remy Sharp" src={project.icon} />
         </MenuIcon>
         {project.title}
       </MenuItem>)
@@ -46,7 +44,7 @@ class Dropdown extends Component {
         <Button ref="anchor"
                 style={{color: '#ddd', fontWeight: 600}}
                 onClick={e => this.setState({open: true, anchor: e.target})}>
-          <MenuIcon><Icon/></MenuIcon> {this.state.currentProject}
+          <MenuIcon> <Icon/> </MenuIcon> {this.state.currentProject.title}
           <KeyboardArrowDownIcon/>
         </Button>
 

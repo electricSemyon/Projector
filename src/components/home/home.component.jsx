@@ -3,7 +3,7 @@ import Header from '../../containers/header.container.jsx';
 import Typography from 'material-ui/Typography';
 import ProjectDrawer from '../project-drawer/project-drawer.component.jsx';
 
-import NewProjectPopup from '../new-project-popup/new-project-popup.component.jsx';
+import NewProjectPopup from '../../containers/new-project-popup.container.jsx';
 import Show from '../show-if/show.jsx';
 import './home.component.style.scss';
 
