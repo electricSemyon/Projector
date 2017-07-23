@@ -1,7 +1,7 @@
 import axios from 'axios';
 const token = localStorage.getItem('token');
 
-const tokenFormInstance =
+const tokenFormInstance = () =>
   axios.create({
     url: '/api',
     headers: {

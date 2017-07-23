@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
 import Show from '../show-if/show.jsx';
-import UserMenu from '../user-menu/user-menu.component.jsx';
+import UserMenu from '../user-menu/user-menu.container.jsx';
 import Dropdown from '../dropdown/dropdown.container.jsx';
 
 import './header.style.scss';
@@ -42,8 +42,9 @@ class Header extends React.Component {
               <Typography type="title" color="inherit" className={styleSheet.flex}>
                 <h2>Projector</h2>
               </Typography>
-              <Show if={localStorage.getItem('token')} className="dropdown-wrapper">
-                <Dropdown currentProject="Projector"/>
+
+              <Show if={this.props.store.auth.user} className="dropdown-wrapper">
+                <Dropdown/>
               </Show>
               {/*<Show if={this.props.logged}>*/}
               <Show if={localStorage.getItem('token')} style={{marginLeft: 'auto'}}>

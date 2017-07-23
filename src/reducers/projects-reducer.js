@@ -6,6 +6,12 @@ const projectsReducer = (store = {}, action) => {
         list: action.payload
       }
 
+    case 'GET_LATEST_PROJECT':
+      return {
+        ...store,
+        latest: action.payload
+      }
+
     default:
       return store;
   }

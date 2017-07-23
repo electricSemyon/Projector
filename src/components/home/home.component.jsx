@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Header from '../../containers/header.container.jsx';
+import Header from '../header/header.container.jsx';
 import Typography from 'material-ui/Typography';
 import ProjectDrawer from '../project-drawer/project-drawer.component.jsx';
 
-import NewProjectPopup from '../../containers/new-project-popup.container.jsx';
+import NewProjectPopup from '../new-project-popup/new-project-popup.container.jsx';
 import Show from '../show-if/show.jsx';
 import './home.component.style.scss';
 
@@ -15,6 +15,7 @@ class Home extends Component {
       newProjectPopupOpened: false
     }
 
+    console.log(localStorage.getItem('token'))
     this.closePopup = this.closePopup.bind(this);
   }
 

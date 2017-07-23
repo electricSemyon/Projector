@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from '../components/header/header.component.jsx';
+import Header from './header.component.jsx';
 
 const mapStateToProps = store => {
   return {

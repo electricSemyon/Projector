@@ -12,6 +12,13 @@ const authReducer = (store = {}, action) => {
         user: action.payload
       }
 
+    case 'LOG_OUT':
+      return {
+        ...store,
+        user: null,
+        projects: null
+      }
+
     default:
       return store;
   }

@@ -5,12 +5,14 @@ import formInstance from './api/form-instance';
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+const LOG_OUT = 'LOG_OUT';
 
 const loginSuccess = (response) => ({ type: LOGIN_SUCCESS, payload: response.data });
 const signUpSuccess = (response) => ({ type: SIGN_UP_SUCCESS, payload: response.data });
+const logoutSuccess = () => ({ type: LOG_OUT });
 
 const getUser = () => dispatch =>
-  tokenInstance
+  tokenInstance()
     .get(`/api/users/me`)
     .then(res => dispatch(loginSuccess(res)))
     .catch(() => {
@@ -29,8 +31,14 @@ const login = (credentials) => dispatch =>
     .then(() => dispatch(push('/home')))
     .catch(err => console.log(err));
 
+const logout = (credentials) => dispatch => {
+    localStorage.removeItem('token');
+    dispatch(push('/login'));
+    dispatch(logoutSuccess());
+}
+
 const signUp = (credentials) => dispatch => {
-  formInstance
+  formInstance()
     .post(`/api/users`, credentials)
     .then(res => {
       localStorage.setItem('token', res.data.token);
@@ -44,6 +52,7 @@ const signUp = (credentials) => dispatch => {
 
 export default {
   login,
+  logout,
   signUp,
   getUser
 }

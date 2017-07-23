@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router';
-import Login from '../containers/login.container.jsx';
-import Signup from '../containers/signup.container.jsx';
+import Login from '../components/login/login.container.jsx';
+import Signup from '../components/signup/signup.container.jsx';
 import Home from '../components/home/home.component.jsx';
 
 const Routes =

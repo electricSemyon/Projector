@@ -3,6 +3,7 @@ import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 
 class UserMenu extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class UserMenu extends Component {
     return (
       <div style={{display: 'inline-block', 'marginLeft': 'auto'}} className="user-menu">
         <IconButton onClick={(e) => this.setState({menuAnchor: e.currentTarget, open: !this.state.open})}>
-          <Avatar alt="Remy Sharp" src={this.props.avatar} />
+          <Avatar src={this.props.avatar} />
         </IconButton>
 
         <Menu anchorEl={this.state.menuAnchor}
@@ -30,7 +31,9 @@ class UserMenu extends Component {
             <Typography>{this.props.user.email}</Typography>
             <Typography>{this.props.user.name}</Typography>
           </div>
-          <MenuItem>Profile</MenuItem>
+          <Button style={{width: '100%'}} onClick={this.props.logout}>
+            Log out
+          </Button>
         </Menu>
       </div>
     );

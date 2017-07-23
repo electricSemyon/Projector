@@ -6,7 +6,7 @@ import Avatar from 'material-ui/Avatar';
 import './dropdown.style.scss';
 
 import Icon from 'material-ui-icons/Schedule';
-import NewProjectPopup from '../../containers/new-project-popup.container.jsx';
+import NewProjectPopup from '../new-project-popup/new-project-popup.container.jsx';
 
 const MenuIcon = props => <div style={{marginRight: '8px'}}>{props.children}</div>
 
@@ -16,12 +16,16 @@ class Dropdown extends Component {
     this.state = {
       open: false,
       anchor: null,
-      currentProject: { title: 'First Shitty Project' },
       newProjectPopupOpened: false
     }
-    console.log('state', this.state.projects)
 
     this.handleRequestClose = this.handleRequestClose.bind(this);
+  }
+
+  componentWillMount() {
+    console.log('will mount')
+    this.props.getProjectsList()
+      this.props.getLatestProject();
   }
 
   handleRequestClose() {
@@ -32,19 +36,24 @@ class Dropdown extends Component {
     return (this.props.list || []).map((project, i) =>
       <MenuItem key={i}>
         <MenuIcon>
-          <Avatar alt="Remy Sharp" src={project.icon} />
+          <Avatar style={{height: '30px', width: '30px'}} src={project.icon} />
         </MenuIcon>
         {project.title}
       </MenuItem>)
   }
 
   render() {
+    const latest = this.props.latest || {};
+
     return (
       <div>
         <Button ref="anchor"
                 style={{color: '#ddd', fontWeight: 600}}
                 onClick={e => this.setState({open: true, anchor: e.target})}>
-          <MenuIcon> <Icon/> </MenuIcon> {this.state.currentProject.title}
+          <MenuIcon>
+            <Avatar style={{height: '30px', width: '30px'}} src={latest.icon} />
+          </MenuIcon>
+          {latest.title}
           <KeyboardArrowDownIcon/>
         </Button>
 

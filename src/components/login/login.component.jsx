@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../containers/header.container.jsx';
+import Header from '../header/header.container.jsx';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';

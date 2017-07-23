@@ -10,8 +10,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.props.getUser()
-      .then(() => this.props.getProjectsList())
+    this.props.getUser();
   }
 
   render() {
@@ -27,9 +26,6 @@ const mapDispatchToProps = dispatch => {
   return {
     getUser() {
       return dispatch(auth.getUser());
-    },
-    getProjectsList() {
-      dispatch(projects.getProjectsList());
     }
   }
 }
