@@ -6,7 +6,7 @@ const authReducer = (store = {}, action) => {
         user: action.payload
       }
 
-    case 'SIGNUP_SUCCESS':
+    case 'SIGN_UP_SUCCESS':
       return {
         ...store,
         user: action.payload

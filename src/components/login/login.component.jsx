@@ -14,10 +14,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      email: '',
-      password: '',
-    }
+    this.state = { email: '', password: '' }
 
     this.handleLogin = this.handleLogin.bind(this);
   }

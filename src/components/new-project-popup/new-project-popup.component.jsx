@@ -49,30 +49,36 @@ class NewProjectPopup extends Component {
 
   render() {
     return (
-      <Dialog open={this.props.open} className="new-project-popup" onRequestClose={this.handleRequestClose}>
-        <DialogTitle>Create new project</DialogTitle>
+      <Dialog maxWidth="md"
+              open={this.props.open}
+              className="new-project-popup"
+              onRequestClose={this.handleRequestClose}>
+        <div className="dialog-content">
+          <DialogTitle>Create new project</DialogTitle>
 
-        <DialogContent>
-          <form onSubmit={this.handleProjectCreation}>
-            <TextField id="project-title" fullWidth label="Project title" marginForm
-                       onChange={(event, value) => this.setState({title: event.target.value})}/>
-            <br/>
+          <DialogContent>
+            <form onSubmit={this.handleProjectCreation}>
+              <TextField id="project-title" fullWidth label="Project title" marginForm
+                         onChange={(event, value) => this.setState({title: event.target.value})}/>
+              <br/>
 
-            <TextField id="project-description" label="Project description" multiline rows="2"
-                       rowsMax="5" fullWidth marginForm/>
-            <br/>
+              <TextField id="project-description" label="Project description" multiline rows="2"
+                         onChange={(event, value) => this.setState({description: event.target.value})}
+                         rowsMax="5" fullWidth marginForm/>
+              <br/>
 
-            <UploadFile accept="image/x-png, image/gif, image/jpeg"
-                        buttonStyle={{style: { marginBottom: '10px'} }}
-                        text="Upload project image"
-                        handleUpload={avatar => this.handleProjectImageUpload(avatar)}/>
-            <br/>
+              <UploadFile accept="image/x-png, image/gif, image/jpeg"
+                          buttonStyle={{style: { marginBottom: '10px'} }}
+                          text="Upload project image"
+                          handleUpload={avatar => this.handleProjectImageUpload(avatar)}/>
+              <br/>
 
-            <Button color="primary" raised type="submit">Create project</Button>
-            <Button onClick={this.handleRequestClose}>Cancel</Button>
-            <br/>
-          </form>
-        </DialogContent>
+              <Button color="primary" raised type="submit">Create project</Button>
+              <Button onClick={this.handleRequestClose}>Cancel</Button>
+              <br/>
+            </form>
+          </DialogContent>
+        </div>
       </Dialog>
     );
   }

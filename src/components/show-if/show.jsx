@@ -1,4 +1,4 @@
 import React, {Component} from 'react';
 
-export default props => props.if ? <div className={props.className} style={props.style}>{props.children}</div> : null;
+export default ({ifTrue, ...props}) => ifTrue ? <div {...props}>{props.children}</div> : null;
 

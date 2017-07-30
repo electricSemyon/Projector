@@ -5,11 +5,11 @@ import Home from './home.component.jsx';
 import projects from '../../actions/projects';
 
 const mapStateToProps = store => ({
-  list: store.projects.list
+  projects: store.projects
 })
 
 const mapDispatchToProps = dispatch => ({
-  get
+
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

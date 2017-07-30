@@ -5,8 +5,7 @@ import Dropdown from './dropdown.component.jsx';
 import projects from '../../actions/projects';
 
 const mapStateToProps = store => ({
-  list: store.projects.list,
-  latest: store.projects.latest
+  ...store.projects
 })
 
 const mapDispatchToProps = dispatch => ({

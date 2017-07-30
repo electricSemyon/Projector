@@ -64,7 +64,7 @@ class Signup extends React.Component {
           <Grid className="ribbon" item xs={12} style={{'height': '200px', 'backgroundColor': '#5C6BC0', 'zIndex': -1}}></Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Paper elevation={4} style={{'padding': '20px', 'marginTop': '-50px'}}>
+            <Paper elevation={4} style={{'padding': '20px', 'marginTop': '-70px'}}>
               <form onSubmit={this.handleSignup}>
                 <Typography type="headline" component="h2"> SIGN UP </Typography>
 

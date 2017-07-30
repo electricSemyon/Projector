@@ -42,10 +42,11 @@ const signUp = (credentials) => dispatch => {
     .post(`/api/users`, credentials)
     .then(res => {
       localStorage.setItem('token', res.data.token);
+      console.log(res.data)
       dispatch(signUpSuccess(res));
       return res.data.token;
     })
-    .then(token => getUser())
+    .then(() => getUser())
     .then(() => dispatch(push('/home')))
     .catch(err => console.log(err));
 }

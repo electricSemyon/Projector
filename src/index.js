@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Router, Route, browserHistory, Redirect } from 'react-router';
+import { Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux';
@@ -13,7 +13,9 @@ import App from './components/app.component.jsx';
 
 const store = configureStore();
 store.subscribe(() => console.log(store.getState()))
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
+
+history.listen(ev => console.log(ev))
 
 injectTapEventPlugin();
 

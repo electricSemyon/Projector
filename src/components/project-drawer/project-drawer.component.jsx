@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Drawer from 'material-ui/Drawer';
+import { Link } from 'react-router';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 
@@ -9,26 +10,31 @@ import SettingsIcon from 'material-ui-icons/Settings';
 import MailIcon from 'material-ui-icons/Email';
 
 import Show from '../show-if/show.jsx';
-import NewProjectPopup from '../new-project-popup/new-project-popup.component.jsx';
 import './project-drawer.style.scss';
+
+const listItemStyle = {height: '50px', paddingTop: '3px', paddingBottom: '3px', paddingLeft: '36px'};
 
 class ProjectDrawer extends Component {
   render() {
     const menu = [
-      { label: 'Project Page', icon: <HomeIcon /> },
-      { label: 'Board',        icon: <DeveloperBoardIcon /> },
-      { label: 'Settings',     icon: <SettingsIcon /> },
-      { label: 'Chat',         icon: <MailIcon /> }
+      { label: 'Project Page', icon: <HomeIcon />,           route: '/home/project' },
+      { label: 'Boards',       icon: <DeveloperBoardIcon />, route: '/home/boards'},
+      { label: 'Settings',     icon: <SettingsIcon />,       route: '/home/settings'},
+      { label: 'Chat',         icon: <MailIcon />,           route: '/home/chat'}
     ];
 
     const menuItem = (item, i) => (
-      <div key={i} >
-        <ListItem button style={{height: '50px', paddingLeft: '36px'}}>
-          <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText style={{paddingLeft: 0}} primary={<span style={{fontWeight: 'bold'}}>{item.label}</span>} />
-        </ListItem>
+      <div className="menu-item" key={i} >
+        <Link to={item.route}>
+          <ListItem button style={listItemStyle}>
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText style={{paddingLeft: 0}} primary={<span style={{fontWeight: 'bold'}}>{item.label}</span>} />
+          </ListItem>
+        </Link>
 
-        <Show if={i === 0}> <Divider /> </Show>
+        <Show ifTrue={i === 0}>
+          <Divider />
+        </Show>
       </div>
     );
 
@@ -36,7 +42,7 @@ class ProjectDrawer extends Component {
       <Drawer open={true} docked={true} className="project-drawer">
         <div className="content" style={{paddingTop: '64px', width: '300px'}}>
           <List disablePadding>
-            {menu.map((el, i) => menuItem(el, i))}
+            {menu.map(menuItem)}
           </List>
         </div>
       </Drawer>

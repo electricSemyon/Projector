@@ -3,12 +3,14 @@ import {createStyleSheet} from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
 
 import Show from '../show-if/show.jsx';
-import UserMenu from '../user-menu/user-menu.container.jsx';
-import Dropdown from '../dropdown/dropdown.container.jsx';
+import UserMenu from '../user-menu/user-menu.component.jsx';
+import Dropdown from '../project-select-dropdown/dropdown.container.jsx';
+
+import Badge from 'material-ui/Badge';
+import MailIcon from 'material-ui-icons/Mail';
+import FolderIcon from 'material-ui-icons/Folder';
 
 import './header.style.scss';
 
@@ -28,32 +30,31 @@ const styleSheet = createStyleSheet('ButtonAppBar', {
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.store)
   }
 
   render() {
     return (
           <AppBar>
-            <Toolbar>
-              <IconButton color="contrast" aria-label="Menu">
-                <MenuIcon />
-              </IconButton>
-
+            <Toolbar style={{'paddingLeft': '40px'}}>
               <Typography type="title" color="inherit" className={styleSheet.flex}>
                 <h2>Projector</h2>
               </Typography>
 
-              <Show if={this.props.store.auth.user} className="dropdown-wrapper">
+              <Show ifTrue={this.props.user} className="dropdown-wrapper">
                 <Dropdown/>
               </Show>
-              {/*<Show if={this.props.logged}>*/}
-              <Show if={localStorage.getItem('token')} style={{marginLeft: 'auto'}}>
-                <UserMenu avatar={this.props.store.auth.user ? this.props.store.auth.user.avatar : ''}
-                          user={this.props.store.auth.user || {}}/>
+
+              <Show ifTrue={localStorage.getItem('token')} style={{marginLeft: 'auto'}}>
+                <Badge badgeContent={14} color="accent" style={{marginRight: '26px', top: '-6px'}}>
+                  <MailIcon />
+                </Badge>
+
+                <UserMenu avatar={this.props.user ? this.props.user.avatar : ''}
+                          user={this.props.user || {}}
+                          logout={this.props.logout}/>
               </Show>
 
-              {/*<Button color="contrast" style={{'marginLeft': 'auto', 'fontWeight': 'bold'}}>Login</Button>*/}
-            </Toolbar>
+              </Toolbar>
           </AppBar>
     );
   }

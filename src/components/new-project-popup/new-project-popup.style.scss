@@ -1,3 +1,9 @@
-.new-project-popup .content{
-  padding: 16px !important;
+.new-project-popup {
+  .dialog-content {
+    min-width: 400px;
+  }
+
+  .content {
+    padding: 16px !important;
+  }
 }
