@@ -1,19 +1,22 @@
 const path = require('path');
 const webpack = require('webpack');
 const CompressionPlugin = require("compression-webpack-plugin");
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const isProd = process.env.NODE_ENV === 'production';
  
 module.exports = {
   entry: './src/index.js',
   output: { path: __dirname + '/dist', filename: 'bundle.js' },
-  plugins: [
+  plugins: isProd ? [
     new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
       test: /\.(js|html)$/,
       threshold: 10240,
       minRatio: 0.8
-    })
-  ],
+    }),
+    new UglifyJSPlugin()
+  ] : [],
   module: {
     loaders: [
       {

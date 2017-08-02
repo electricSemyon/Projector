@@ -8,7 +8,7 @@ import './dropdown.style.scss';
 import Show from '../show-if/show.jsx';
 import NewProjectPopup from '../new-project-popup/new-project-popup.container.jsx';
 
-const MenuIcon = props => <div className="menu-item">{props.children}</div>
+const MenuIcon = props => <div className="menu-icon">{props.children}</div>
 
 class Dropdown extends Component {
   constructor(props) {

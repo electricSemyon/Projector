@@ -4,6 +4,7 @@ import Header from '../header/header.container.jsx';
 import Typography from 'material-ui/Typography';
 import ProjectDrawer from '../project-drawer/project-drawer.component.jsx';
 import ProjectPage from '../project-page/project-page.container.jsx';
+import Grid from 'material-ui/Grid';
 
 import NewProjectPopup from '../new-project-popup/new-project-popup.container.jsx';
 import Show from '../show-if/show.jsx';
@@ -26,7 +27,7 @@ class Home extends Component {
     const projectsList = this.props.projects.list;
 
     return (
-      <div className="home">
+      <Grid item xs={12} className="home">
         <Header/>
 
         <Show ifTrue={projectsList && projectsList.length}>
@@ -46,7 +47,7 @@ class Home extends Component {
         </Show>
 
         <NewProjectPopup requestClose={this.closePopup} open={this.state.newProjectPopupOpened} />
-      </div>
+      </Grid>
     );
   }
 }

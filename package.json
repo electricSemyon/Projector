@@ -4,7 +4,7 @@
   "description": "Boilerplate for react&redux projects. Using webpack, less, react, redux",
   "main": "src/app.js",
   "scripts": {
-    "start": "webpack -d --watch & webpack-dev-server --hot --port 3000",
+    "start": "webpack -d --watch & webpack-dev-server --hot --port 3000 --host 192.168.88.76",
     "build": "webpack",
     "test": "mocha --compilers js:babel-register --recursive",
     "lint": "eslint ."
@@ -50,6 +50,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.0",
     "redux-thunk": "^2.2.0",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "uglifyjs-webpack-plugin": "^0.4.6"
   }
 }

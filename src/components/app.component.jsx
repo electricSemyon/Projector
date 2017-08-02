@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import auth from '../actions/auth';
+import Grid from 'material-ui/Grid';
 import projects from '../actions/projects';
 
 class App extends Component {
@@ -15,7 +16,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>{this.props.children}</div>
+      <div>
+        {this.props.children}
+      </div>
     );
   }
 }
