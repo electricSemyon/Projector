@@ -2,7 +2,7 @@ import 'jsdom-global/register';
 import React from 'react';
 import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
-import BoardItem from '../../src/components/boards-list/board-item.jsx';
+import BoardItem from '../src/components/boards-list/board-item.jsx';
 
 describe("BoardItem", function() {
   it("should render three headers", function() {
