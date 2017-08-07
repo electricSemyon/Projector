@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack -d --watch & webpack-dev-server --hot --port 3000 --host localhost",
     "build": "webpack",
-    "test": "mocha --compilers js:babel-register --recursive --require ignore-styles",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-register --recursive --require ignore-styles",
     "lint": "eslint src"
   },
   "author": "electricSemyon",
