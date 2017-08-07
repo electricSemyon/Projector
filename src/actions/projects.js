@@ -8,10 +8,12 @@ import tokenFormInstance from './api/token-form-instance';
 const GET_PROJECT = 'GET_PROJECTS_LIST';
 const GET_LATEST_PROJECT = 'GET_LATEST_PROJECT';
 const POST_PROJECT = 'POST_PROJECT_SUCCESS';
+const CREATE_PROJECT = 'CREATE_PROJECT';
 
 const getProjectsListSuccess = (list) => ({ type: GET_PROJECT, payload: list });
-const getLatestProjectSuccess = (project) => ({ type: GET_LATEST_PROJECT, payload: project });
+const switchLatestProject = (project) => ({ type: GET_LATEST_PROJECT, payload: project });
 const postProjectSuccess = () => ({ type: POST_PROJECT, payload: {} });
+const createProjectSuccess = project => ({ type: CREATE_PROJECT, payload: project });
 
 const getProjectsList = () => dispatch =>
   tokenInstance()
@@ -24,7 +26,7 @@ const getProjectsList = () => dispatch =>
 const getLatestProject = () => dispatch =>
   tokenInstance()
     .get(`/api/projects/latest`)
-    .then(res => dispatch(getLatestProjectSuccess(res.data)))
+    .then(res => dispatch(switchLatestProject(res.data)))
     .catch(err => {
       console.log(err)
     })
@@ -32,11 +34,16 @@ const getLatestProject = () => dispatch =>
 const createProject = (projectInfo) => dispatch =>
   tokenFormInstance()
     .post(`/api/projects`, projectInfo)
-    .then(res => console.log(res))
+    .then(res => dispatch(createProjectSuccess(res.data)))
     .catch(err => console.log(err))
+
+const switchCurrentProject = (project) => dispatch =>
+  dispatch(switchLatestProject(project));
+
 
 export default {
   getProjectsList,
   getLatestProject,
-  createProject
+  createProject,
+  switchCurrentProject
 }

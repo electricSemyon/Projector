@@ -3,7 +3,10 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
-import ProjectInfo from './project-info/project-info.component.jsx';
+import ProjectInfo from './project-info.component.jsx';
+import MembersList from './members.component.jsx';
+
+import './project-page.style.scss';
 
 const styleSheet = createStyleSheet('Tabs', theme => ({
   root: {
@@ -31,6 +34,7 @@ class ProjectTabs extends Component {
   render() {
     const classes = this.props.classes;
     const tabsList = ['logs', 'info', 'members list', 'attachments'];
+    const latestProject = this.props.latestProject || {};
 
     const tab = (label, i) => <Tab key={i} label={label} style={tabStyle}/>;
 
@@ -42,9 +46,10 @@ class ProjectTabs extends Component {
           </Tabs>
         </Paper>
 
-        <div style={{padding: '30px'}}>
+        <div>
           {this.state.index === 0 && 'Item zero'}
-          {this.state.index === 1 && <ProjectInfo latestProject={this.props.latestProject}/>}
+          {this.state.index === 1 && <ProjectInfo latestProject={latestProject}/>}
+          {this.state.index === 2 && <MembersList members={latestProject.users}/>}
         </div>
       </div>
     );

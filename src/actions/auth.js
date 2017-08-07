@@ -18,7 +18,7 @@ const getUser = () => dispatch =>
     .catch(() => {
       localStorage.removeItem('token')
       dispatch(push('/login'));
-    })
+    });
 
 const login = (credentials) => dispatch =>
   axios.post(`/auth/local`, credentials)
@@ -42,7 +42,6 @@ const signUp = (credentials) => dispatch => {
     .post(`/api/users`, credentials)
     .then(res => {
       localStorage.setItem('token', res.data.token);
-      console.log(res.data)
       dispatch(signUpSuccess(res));
       return res.data.token;
     })

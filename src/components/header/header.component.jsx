@@ -4,7 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
-import Show from '../show-if/show.jsx';
+import Show from '../utils/show.jsx';
 import UserMenu from '../user-menu/user-menu.component.jsx';
 import Dropdown from '../project-select-dropdown/dropdown.container.jsx';
 
@@ -35,7 +35,7 @@ class Header extends React.Component {
   render() {
     return (
           <AppBar>
-            <Toolbar style={{'paddingLeft': '40px'}}>
+            <Toolbar className="header-toolbar">
               <Typography type="title" color="inherit" className={styleSheet.flex}>
                 <h2>Projector</h2>
               </Typography>
@@ -45,7 +45,7 @@ class Header extends React.Component {
               </Show>
 
               <Show ifTrue={localStorage.getItem('token')} style={{marginLeft: 'auto'}}>
-                <Badge badgeContent={14} color="accent" style={{marginRight: '26px', top: '-6px'}}>
+                <Badge badgeContent={14} color="accent" className="mail-badge">
                   <MailIcon />
                 </Badge>
 

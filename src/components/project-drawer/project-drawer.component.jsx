@@ -9,10 +9,8 @@ import DeveloperBoardIcon from 'material-ui-icons/DeveloperBoard';
 import SettingsIcon from 'material-ui-icons/Settings';
 import MailIcon from 'material-ui-icons/Email';
 
-import Show from '../show-if/show.jsx';
+import Show from '../utils/show.jsx';
 import './project-drawer.style.scss';
-
-const listItemStyle = {height: '50px', paddingTop: '3px', paddingBottom: '3px', paddingLeft: '36px'};
 
 class ProjectDrawer extends Component {
   render() {
@@ -26,7 +24,7 @@ class ProjectDrawer extends Component {
     const menuItem = (item, i) => (
       <div className="menu-item" key={i} >
         <Link to={item.route}>
-          <ListItem button style={listItemStyle}>
+          <ListItem button className="link">
             <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText style={{paddingLeft: 0}} primary={<span style={{fontWeight: 'bold'}}>{item.label}</span>} />
           </ListItem>
@@ -40,7 +38,7 @@ class ProjectDrawer extends Component {
 
     return (
       <Drawer open={true} docked={true} className="project-drawer">
-        <div className="content" style={{paddingTop: '64px', width: '300px'}}>
+        <div className="content">
           <List disablePadding>
             {menu.map(menuItem)}
           </List>

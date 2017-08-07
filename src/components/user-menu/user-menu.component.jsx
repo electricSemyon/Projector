@@ -32,7 +32,7 @@ class UserMenu extends Component {
               open={this.state.open}
               onRequestClose={this.handleRequestClose}>
 
-          <div className="user-info" style={{padding: '16px'}}>
+          <div className="user-info align-center" style={{padding: '16px'}}>
             <Avatar src={this.props.avatar} style={userMenuAvatarStyle}/>
             <Typography type="title" gutterBottom>@{this.props.user.name}</Typography>
             <Typography>{this.props.user.email}</Typography>

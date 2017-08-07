@@ -1,8 +1,20 @@
 .project-drawer > div {
   z-index: 1000;
+
+  .content {
+    padding-top: 64px;
+    width: 300px;
+  }
 }
 
 .menu-item a {
   color: inherit;
   text-decoration: none;
+
+  .link {
+    height: 50px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 36px;
+  }
 }

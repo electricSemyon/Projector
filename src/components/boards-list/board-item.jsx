@@ -3,50 +3,56 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import { LinearProgress } from 'material-ui/Progress';
+import IconButton from 'material-ui/IconButton';
+import Menu, { MenuItem } from 'material-ui/Menu';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
+import Show from '../utils/show.jsx';
 
-const boardItemStyle = {marginBottom: 16, marginRight: 'auto', width: '46%', overflow: 'hidden'}
-const memberAvatarStyle = {height: 32, width: 32, display: 'inline-block', marginRight: 8}
-const moreStyles = {display: 'inline-block', verticalAlign: 'middle', marginTop: -12}
-const linearProgressStyle = {height: 3}
-const boardContainerStyle = {padding: 16}
+import './boards-list.style.scss';
 
-const getMembersList = members => members.slice(0, 5).map((member, i) => <Avatar src={member.avatar} key={i} style={memberAvatarStyle}/>)
+const More = ({label}) =>
+  <Typography type="body1" component="span" color="secondary">
+    and <a href="javascript:;">more {label}</a>
+  </Typography>;
 
-const paragraph = (label) => <Typography type="body1" component="p">{label}</Typography>
+const Margin = ({height}) => <div style={{marginTop: height}}></div>;
 
-const headline = (label) => <Typography type="title" component="h3">{label}</Typography>
-
-const more = (label) => <Typography type="body1" style={moreStyles} component="span" color="secondary">and <a style={{textDecoration: 'none', color: '#7984C6'}} href="javascript:;">more {label}</a></Typography>
-
-const margin = (count) => <div style={{marginTop: count}}></div>
-
-const count = (count, things) =>
+const Count = ({count, things}) =>
   <div style={{display: 'inline-block', marginRight: 26}}>
     <Typography type="title" component="h3">{count}</Typography>
     <Typography type="body1" component="p" color="secondary">{things}</Typography>
-  </div>
+  </div>;
 
-const BoardsItem = ({members, ...props}) =>
-   <Paper style={boardItemStyle} elevation={1}>
-     <div style={boardContainerStyle}>
-       {margin(8)}
-       {headline('Projector Frontend')}
+const BoardsItem = ({members = [], name, description, ...props}) =>
+   <Paper className="board-item" elevation={2}>
+     <div className="board-container">
+       <Margin height={8}/>
+       <a href="javascript:;"><Typography type="title" component="h3">{name}</Typography></a>
 
-       {margin(16)}
-       {getMembersList(members || [])}
-       {more(`${members.length - 5}`)}
+       <Margin height={16}/>
+       {(members || []).slice(0, 5).map((member, i) => <Avatar src={member.avatar} key={i} className="member-avatar"/>)}
 
-       {margin(16)}
-       {count(27, 'comments')}
-       {count(18, 'tickets')}
+       <Show className="more-users" ifTrue={members.length > 5}>
+         <More label={members.length - 5}/>
+       </Show>
 
-       {margin(8)}
-       {paragraph('The board, thar contents projector frontend tickets')}
+       <Margin height={16}/>
+       <Count count={27} things="comments"/>
+       <Count count={18} things="tickets"/>
 
-       {margin(8)}
+       <Margin height={8}/>
+       <Typography type="body1" component="p">{description}</Typography>
+
+       <IconButton
+         aria-label="More"
+         aria-owns="long-menu"
+         aria-haspopup="true"
+         className="menu-button">
+         <MoreVertIcon />
+       </IconButton>
      </div>
-     <LinearProgress style={linearProgressStyle} mode="determinate" value={16} />
-   </Paper>
+     <LinearProgress className="board-progress" mode="determinate" value={16} />
+   </Paper>;
 
 
 export default BoardsItem;

@@ -6,7 +6,7 @@ import Signup from '../components/signup/signup.container.jsx';
 import Home from '../components/home/home.container.jsx';
 
 import ProjectPage from '../components/project-page/project-page.container.jsx';
-import BoardsList from '../components/boards-list/boards-list.component.jsx';
+import BoardsList from '../components/boards-list/boards-list.container.jsx';
 
 const Routes =
   (<div>

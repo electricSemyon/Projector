@@ -45,6 +45,8 @@ class NewProjectPopup extends Component {
       data.append('icon', this.state.avatar);
 
     this.props.createProject(data);
+
+    this.handleRequestClose();
   }
 
   render() {

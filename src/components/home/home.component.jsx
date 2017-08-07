@@ -7,7 +7,7 @@ import ProjectPage from '../project-page/project-page.container.jsx';
 import Grid from 'material-ui/Grid';
 
 import NewProjectPopup from '../new-project-popup/new-project-popup.container.jsx';
-import Show from '../show-if/show.jsx';
+import Show from '../utils/show.jsx';
 import './home.component.style.scss';
 
 class Home extends Component {

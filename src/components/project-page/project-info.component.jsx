@@ -11,7 +11,7 @@ class ProjectInfo extends Component {
     const project = this.props.latestProject;
 
     return (
-      <div className="project-info">
+      <div className="project-info" style={{padding: '30px'}}>
         <Typography type="title">{project.title}</Typography>
         <Typography>{this.props.latestProject.description}</Typography>
       </div>

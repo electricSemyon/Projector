@@ -9,6 +9,13 @@ const projectsReducer = (store = {}, action) => {
     case 'GET_LATEST_PROJECT':
       return {
         ...store,
+        latest: store.list.find(project => project._id === action.payload._id)
+      }
+
+    case 'CREATE_PROJECT':
+      return {
+        ...store,
+        list: [...store.list, action.payload],
         latest: action.payload
       }
 

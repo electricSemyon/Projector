@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from 'material-ui-icons/KeyboardArrowDown';
 import Avatar from 'material-ui/Avatar';
 import './dropdown.style.scss';
 
-import Show from '../show-if/show.jsx';
+import Show from '../utils/show.jsx';
 import NewProjectPopup from '../new-project-popup/new-project-popup.container.jsx';
 
 const MenuIcon = props => <div className="menu-icon">{props.children}</div>
@@ -17,15 +17,19 @@ class Dropdown extends Component {
       open: false,
       anchor: null,
       newProjectPopupOpened: false
-    }
+    };
 
     this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   componentWillMount() {
-    console.log('will mount')
     this.props.getProjectsList()
-    this.props.getLatestProject();
+      .then(() => this.props.getLatestProject())
+      .catch(err => console.log(err));
+  }
+
+  handleClickListItem(id) {
+    this.props.switchCurrentProject(id);
   }
 
   handleRequestClose() {
@@ -33,8 +37,10 @@ class Dropdown extends Component {
   }
 
   renderExistingProjects() {
+    const projectItemStyle = {paddingLeft: 32, paddingRight: 32};
+
     return (this.props.list || []).map((project, i) =>
-      <MenuItem key={i}>
+      <MenuItem style={projectItemStyle} key={i} onClick={() => this.handleClickListItem(project)}>
         <MenuIcon>
           <Avatar className="project-icon" src={project.icon}/>
         </MenuIcon>
