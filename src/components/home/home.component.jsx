@@ -28,8 +28,6 @@ class Home extends Component {
 
     return (
       <Grid item xs={12} className="home">
-        <Header/>
-
         <Show ifTrue={projectsList && projectsList.length}>
           <ProjectDrawer />
 
@@ -38,7 +36,7 @@ class Home extends Component {
           </div>
         </Show>
 
-        <Show ifTrue={projectsList && !projectsList.length}>
+        <Show ifTrue={!projectsList || (projectsList && !projectsList.length)}>
           <div className="no-active-projects-placeholder">
             <Typography color="secondary">
               Sorry, you have no active projects. You can <a href="javascript:;" onClick={() => this.setState({ newProjectPopupOpened: true })}>create one</a>.

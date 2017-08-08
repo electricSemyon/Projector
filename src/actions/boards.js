@@ -6,7 +6,7 @@ const CREATE_BOARD = 'CREATE_BOARD';
 const GET_BOARDS = 'GET_BOARDS';
 
 const createBoardSuccess = response => ({ type: CREATE_BOARD, payload: response.data });
-const getBoardsSuccess = response => ({ type: GET_BOARDS, payload: response.data });
+const getBoardsSuccess = boards => ({ type: GET_BOARDS, payload: boards });
 
 const createBoard = (boardInfo, projectId) => dispatch =>
   tokenInstance()
@@ -17,8 +17,12 @@ const createBoard = (boardInfo, projectId) => dispatch =>
 const getBoardsList = (projectId) => dispatch =>
   tokenInstance()
     .get(`/api/projects/${projectId}/boards`)
-    .then(res => dispatch(getBoardsSuccess(res)))
-    .catch(err => console.log(err));
+    .then(res => dispatch(getBoardsSuccess(res.data)))
+    .catch(err => {
+      if(err.response.status === 404)
+        dispatch(getBoardsSuccess(null));
+      console.log(err)
+    });
 
 export default {
   createBoard,

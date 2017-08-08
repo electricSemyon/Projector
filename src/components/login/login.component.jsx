@@ -31,7 +31,6 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <Header/>
         <Grid container gutter={0} justify="center">
           <Grid className="ribbon" item xs={12} style={{'height': '200px', 'backgroundColor': '#5C6BC0', 'zIndex': -1}}></Grid>
 

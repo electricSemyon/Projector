@@ -15,7 +15,7 @@ const projectsReducer = (store = {}, action) => {
     case 'CREATE_PROJECT':
       return {
         ...store,
-        list: [...store.list, action.payload],
+        list: [...(store.list || []), action.payload],
         latest: action.payload
       }
 

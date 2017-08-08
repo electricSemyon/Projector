@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import Chip from 'material-ui/Chip';
 import margin from '../utils/margin.component.jsx';
+import Avatar from 'material-ui/Avatar';
 import './chips-input.style.scss';
 
 class ChipsInput extends Component {
@@ -25,23 +26,44 @@ class ChipsInput extends Component {
     this.inputRef.removeEventListener('keypress', this.handleAddChip);
   }
 
-  deleteChip(label) {
-    this.setState({chips: this.state.chips.filter(chip => chip != label)})
+  deleteChip(chip) {
+    this.setState({chips: this.state.chips.filter(_chip => _chip.label != chip.label)})
   }
 
   handleAddChip(e) {
-    if(e.keyCode === 13)
-      this.setState({chips: [...this.state.chips, this.state.inputValue], inputValue: ''});
+    if(e.keyCode === 13) {
+      const addedChip = {label: this.state.inputValue};
+
+      const updateChips = newChipsArray => {
+        this.props.onAddChip(addedChip, newChipsArray);
+        this.setState({chips: newChipsArray, inputValue: ''});
+      };
+
+      if(!this.props.middleware) {
+        updateChips([...this.state.chips, addedChip]);
+      } else {
+        this.props.middleware(addedChip)
+          .then(chip => {
+            if(!chip.error)
+              updateChips([...this.state.chips, chip]);
+            else {
+              this.setState({error: chip.error, inputValue: ''});
+            }
+          })
+          .catch(err => console.log(err))
+      }
+    }
   }
 
   handleInputChange(e) {
-    this.setState({inputValue: e.target.value});
+    this.setState({inputValue: e.target.value, error: null});
   }
 
   render() {
-    const renderChip = label => <Chip style = {{marginBottom: 8, marginRight: 8}}
-                                      label = {label}
-                                      onRequestDelete = {() => this.deleteChip(label)}/>;
+    const renderChip = chip => <Chip  avatar={chip.avatar ? <Avatar src={chip.avatar}/> : null}
+                                      style = {{marginBottom: 8, marginRight: 8}}
+                                      label = {chip.label}
+                                      onRequestDelete = {() => this.deleteChip(chip)}/>;
 
     return (
       <div>
@@ -51,7 +73,9 @@ class ChipsInput extends Component {
                    marginForm
                    inputRef = {ref => this.inputRef = ref}
                    onChange = {this.handleInputChange}
-                   value = {this.state.inputValue} >
+                   value = {this.state.inputValue}
+                   error={this.state.error}
+                   helperText={this.state.error}>
         </TextField>
 
         {margin(8)}

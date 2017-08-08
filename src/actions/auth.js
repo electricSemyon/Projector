@@ -16,7 +16,7 @@ const getUser = () => dispatch =>
     .get(`/api/users/me`)
     .then(res => dispatch(loginSuccess(res)))
     .catch(() => {
-      localStorage.removeItem('token')
+      localStorage.removeItem('token');
       dispatch(push('/login'));
     });
 
@@ -35,7 +35,7 @@ const logout = (credentials) => dispatch => {
     localStorage.removeItem('token');
     dispatch(push('/login'));
     dispatch(logoutSuccess());
-}
+};
 
 const signUp = (credentials) => dispatch => {
   formInstance()
@@ -48,11 +48,16 @@ const signUp = (credentials) => dispatch => {
     .then(() => getUser())
     .then(() => dispatch(push('/home')))
     .catch(err => console.log(err));
-}
+};
+
+const findUser = email =>
+  tokenInstance().get(`/api/users?email=${email}`)
+    .then(res => res.data);
 
 export default {
   login,
   logout,
   signUp,
-  getUser
+  getUser,
+  findUser
 }

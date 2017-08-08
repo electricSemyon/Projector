@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import auth from '../actions/auth';
 import Grid from 'material-ui/Grid';
 import projects from '../actions/projects';
+import Header from './header/header.container.jsx'
 
 class App extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Header/>
         {this.props.children}
       </div>
     );

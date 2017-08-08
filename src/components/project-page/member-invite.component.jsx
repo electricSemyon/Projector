@@ -5,13 +5,21 @@ import Button from 'material-ui/Button';
 import margin from '../utils/margin.component.jsx';
 import ChipsInput from '../chips-input/chips-input.component.jsx';
 
+import auth from '../../actions/auth';
+
 class MemberInvite extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  handleEmailChange(event) {
-    this.setState({})
+  handleEmailChange(email) {
+    return auth.findUser(email.label).then(users => ({
+      label: users[0].email,
+      avatar: users[0].avatar
+    }))
+      .catch(err => ({
+        error: 'There is no user with this email'
+      }))
   }
 
   render() {
@@ -22,14 +30,14 @@ class MemberInvite extends React.Component {
         onRequestClose={this.props.onRequestClose}
         MenuListProps={{
           style: {
-            width: 320,
-            height: 400,
+            width: 450,
+            height: 300,
             padding: 32
           },
         }}
       >
         <div className="no-outline">
-          <ChipsInput/>
+          <ChipsInput onAddChip={() => console.log('add')} middleware={this.handleEmailChange}/>
 
           {margin(32)}
 
