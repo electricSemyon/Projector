@@ -40,6 +40,7 @@
     "axios": "^0.16.2",
     "babel-register": "^6.24.1",
     "chai": "^4.1.0",
+    "coveralls": "^2.13.1",
     "enzyme": "^2.9.1",
     "formsy-react": "^0.19.5",
     "material-ui": "^1.0.0-beta.3",
@@ -64,8 +65,13 @@
     "extension": [
       ".jsx"
     ],
-    "include": ["**/components", "**/utils"],
-    "exclude": ["node_modules"],
+    "include": [
+      "**/components",
+      "**/utils"
+    ],
+    "exclude": [
+      "node_modules"
+    ],
     "check-coverage": "true",
     "all": "true"
   }
