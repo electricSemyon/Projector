@@ -7,7 +7,7 @@
     "start": "webpack -d --watch & webpack-dev-server --hot --port 3000 --host localhost",
     "build": "webpack",
     "test": "./node_modules/.bin/mocha --compilers js:babel-register --recursive --require ignore-styles",
-    "coverage": "node_modules/.bin/nyc --require babel-core/register --require ignore-styles node_modules/.bin/mocha --recursive",
+    "coverage": "node_modules/.bin/nyc --require babel-core/register --require ignore-styles node_modules/.bin/mocha --recursive ; exit 0",
     "lint": "eslint src"
   },
   "author": "electricSemyon",
@@ -65,6 +65,7 @@
       ".jsx"
     ],
     "include": ["**/components", "**/utils"],
+    "exclude": ["node_modules"],
     "check-coverage": "true",
     "all": "true"
   }
