@@ -4,9 +4,12 @@ import Dropdown from './dropdown.component.jsx';
 
 import projects from '../../actions/projects';
 
-const mapStateToProps = store => ({
-  ...store.projects
-})
+const mapStateToProps = store => {
+  return {
+    ...store.projects,
+    userId: (store.auth.user || {})._id
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
   getProjectsList() {

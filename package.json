@@ -7,7 +7,7 @@
     "start": "webpack -d --watch & webpack-dev-server --hot --port 3000 --host localhost",
     "build": "webpack",
     "test": "./node_modules/.bin/mocha --compilers js:babel-register --recursive --require ignore-styles",
-    "coverage": "node_modules/.bin/nyc --require babel-core/register --require ignore-styles node_modules/.bin/mocha --recursive ; exit 0",
+    "coverage": "./node_modules/.bin/nyc --reporter=lcov --reporter=text-lcov npm test | coveralls",
     "lint": "eslint src"
   },
   "author": "electricSemyon",
@@ -43,6 +43,7 @@
     "coveralls": "^2.13.1",
     "enzyme": "^2.9.1",
     "formsy-react": "^0.19.5",
+    "istanbul": "^1.0.0-alpha.2",
     "material-ui": "^1.0.0-beta.3",
     "material-ui-icons": "^1.0.0-alpha.19",
     "mocha": "^3.4.2",

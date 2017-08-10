@@ -30,9 +30,17 @@ const styleSheet = createStyleSheet('ButtonAppBar', {
 class Header extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {user: null}
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({user: nextProps.user})
   }
 
   render() {
+    const user = this.state.user;
+
     return (
           <AppBar>
             <Toolbar className="header-toolbar">
@@ -40,7 +48,7 @@ class Header extends React.Component {
                 <h2>Projector</h2>
               </Typography>
 
-              <Show ifTrue={this.props.user} className="dropdown-wrapper">
+              <Show ifTrue={user} className="dropdown-wrapper">
                 <Dropdown/>
               </Show>
 
