@@ -49,7 +49,10 @@ class ProjectTabs extends Component {
         <div>
           {this.state.index === 0 && 'Item zero'}
           {this.state.index === 1 && <ProjectInfo latestProject={latestProject}/>}
-          {this.state.index === 2 && <MembersList members={latestProject.users}/>}
+          {this.state.index === 2 && <MembersList sendInvites={this.props.sendInvites}
+                                                  currentUser={this.props.currentUser}
+                                                  members={latestProject.users}
+                                                  projectId={this.props.latestProject._id}/>}
         </div>
       </div>
     );

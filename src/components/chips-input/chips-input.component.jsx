@@ -27,7 +27,8 @@ class ChipsInput extends Component {
   }
 
   deleteChip(chip) {
-    this.setState({chips: this.state.chips.filter(_chip => _chip.label != chip.label)})
+    this.setState({chips: this.state.chips.filter(_chip => _chip.label != chip.label)},
+      () => this.props.onAddChip(null, this.state.chips));
   }
 
   handleAddChip(e) {
@@ -43,14 +44,8 @@ class ChipsInput extends Component {
         updateChips([...this.state.chips, addedChip]);
       } else {
         this.props.middleware(addedChip)
-          .then(chip => {
-            if(!chip.error)
-              updateChips([...this.state.chips, chip]);
-            else {
-              this.setState({error: chip.error, inputValue: ''});
-            }
-          })
-          .catch(err => console.log(err))
+          .then(chip => updateChips([...this.state.chips, chip]))
+          .catch(err => this.setState({error: err.error, inputValue: ''}))
       }
     }
   }

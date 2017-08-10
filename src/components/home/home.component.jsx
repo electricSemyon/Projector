@@ -25,6 +25,7 @@ class Home extends Component {
 
   render() {
     const projectsList = this.props.projects.list;
+    console.log(projectsList)
 
     return (
       <Grid item xs={12} className="home">

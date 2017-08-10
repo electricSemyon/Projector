@@ -41,7 +41,10 @@ class MembersList extends Component {
 
         <MemberInviteMenu isOpen={this.state.isInviteMenuOpen}
                           anchor={this.state.abbButtonAnchor}
-                          onRequestClose={() => this.toggleInviteMenu()}/>
+                          onRequestClose={() => this.toggleInviteMenu()}
+                          currentUser={this.props.currentUser}
+                          sendInvites={this.props.sendInvites}
+                          projectId={this.props.projectId}/>
       </div>
     );
   }

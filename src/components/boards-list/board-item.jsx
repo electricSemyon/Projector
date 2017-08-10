@@ -18,7 +18,7 @@ const More = ({label}) =>
 const Margin = ({height}) => <div style={{marginTop: height}}></div>;
 
 const Count = ({count, things}) =>
-  <div style={{display: 'inline-block', marginRight: 26}}>
+  <div className="things-counter">
     <Typography type="title" component="h3">{count}</Typography>
     <Typography type="body1" component="p" color="secondary">{things}</Typography>
   </div>;
