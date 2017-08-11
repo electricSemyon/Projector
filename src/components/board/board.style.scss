@@ -1,0 +1,15 @@
+.board {
+  padding: 32px;
+
+  .column {
+    width: 300px;
+
+    .column-header {
+      padding: 16px;
+    }
+
+    .ticket {
+      padding: 16px;
+    }
+  }
+}

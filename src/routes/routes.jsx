@@ -4,9 +4,9 @@ import {Route, IndexRoute} from 'react-router';
 import Login from '../components/login/login.container.jsx';
 import Signup from '../components/signup/signup.container.jsx';
 import Home from '../components/home/home.container.jsx';
-
 import ProjectPage from '../components/project-page/project-page.container.jsx';
 import BoardsList from '../components/boards-list/boards-list.container.jsx';
+import Board from '../components/board/board.component.jsx';
 
 const Routes =
   (<div>
@@ -16,6 +16,7 @@ const Routes =
 
       <Route path="project" component={ProjectPage}/>
       <Route path="boards" component={BoardsList}/>
+      <Route path="boards/:id" component={Board}/>
       <Route path="settings" component={() => <div>here are some settings</div>}/>
     </Route>
     <Route exact path="/login" component={Login}/>

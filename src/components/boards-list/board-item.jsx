@@ -27,7 +27,9 @@ const BoardsItem = ({members = [], name, description, ...props}) =>
    <Paper className="board-item" elevation={2}>
      <div className="board-container">
        <Margin height={8}/>
-       <a href="javascript:;"><Typography type="title" component="h3">{name}</Typography></a>
+       <a href="javascript:;">
+         <Typography className="board-title" type="title" component="h3">{name}</Typography>
+       </a>
 
        <Margin height={16}/>
        {(members || []).slice(0, 5).map((member, i) => <Avatar src={member.avatar} key={i} className="member-avatar"/>)}

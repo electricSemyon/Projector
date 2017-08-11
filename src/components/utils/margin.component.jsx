@@ -1,3 +1,3 @@
 import React, {Component} from 'react';
 
-export default (count) => <div style={{marginTop: count}}></div>
+export default ({height}) => <div style={{marginTop: height}}></div>
