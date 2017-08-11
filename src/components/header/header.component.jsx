@@ -30,8 +30,6 @@ const styleSheet = createStyleSheet('ButtonAppBar', {
 class Header extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {user: null}
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,20 +37,18 @@ class Header extends React.Component {
   }
 
   render() {
-    const user = this.state.user;
-
     return (
           <AppBar>
             <Toolbar className="header-toolbar">
-              <Typography type="title" color="inherit" className={styleSheet.flex}>
-                <h2>Projector</h2>
+              <Typography style={{fontSize: 30}} type="title" color="inherit" >
+                Projector
               </Typography>
 
-              <Show ifTrue={user} className="dropdown-wrapper">
+              <Show ifTrue={this.props.user} className="dropdown-wrapper">
                 <Dropdown/>
               </Show>
 
-              <Show ifTrue={localStorage.getItem('token')} style={{marginLeft: 'auto'}}>
+              <Show ifTrue={this.props.user} style={{marginLeft: 'auto'}}>
                 <Badge badgeContent={14} color="accent" className="mail-badge">
                   <MailIcon />
                 </Badge>

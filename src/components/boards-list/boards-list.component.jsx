@@ -22,6 +22,7 @@ class BoardsList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(this.props.currentProject, nextProps.currentProject)
     if(this.props.currentProject != nextProps.currentProject)
       this.props.getBoardsList(nextProps.currentProject._id);
   }

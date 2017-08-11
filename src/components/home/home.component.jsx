@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Route } from 'react-router';
-import Header from '../header/header.container.jsx';
 import Typography from 'material-ui/Typography';
 import ProjectDrawer from '../project-drawer/project-drawer.component.jsx';
 import ProjectPage from '../project-page/project-page.container.jsx';
