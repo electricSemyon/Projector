@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Route, IndexRoute} from 'react-router';
 
+import Fetch from '../components/utils/fetch.jsx';
+
 import Login from '../components/login/login.container.jsx';
 import Signup from '../components/signup/signup.container.jsx';
 import Home from '../components/home/home.container.jsx';

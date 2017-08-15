@@ -5,26 +5,43 @@ import ProjectDrawer from '../project-drawer/project-drawer.component.jsx';
 import ProjectPage from '../project-page/project-page.container.jsx';
 import Grid from 'material-ui/Grid';
 
+import Fetch from '../utils/fetch.jsx';
 import NewProjectPopup from '../new-project-popup/new-project-popup.container.jsx';
 import Show from '../utils/show.jsx';
+import LoadingSpinner from './loading-spinner.component.jsx';
+
 import './home.component.style.scss';
 
 class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { newProjectPopupOpened: false };
+    this.state = { newProjectPopupOpened: false, isLoaded: false };
 
     this.closePopup = this.closePopup.bind(this);
+    this.toggleLoading = this.toggleLoading.bind(this);
   }
 
   closePopup() {
     this.setState({newProjectPopupOpened: false});
   }
 
+  toggleLoading(isLoaded) {
+    this.setState({isLoaded});
+  }
+
+  componentWillMount() {
+    this.props.getUser()
+      .then(() => this.props.getProjectsList())
+      .then(() => this.props.getLatestProject())
+      .then((res) => {
+        this.toggleLoading(true)
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     const projectsList = this.props.projects.list;
-    console.log(projectsList)
 
     return (
       <Grid item xs={12} className="home">
@@ -32,7 +49,9 @@ class Home extends Component {
           <ProjectDrawer />
 
           <div className="home-main">
-            {this.props.children}
+            <Show ifTrue={this.state.isLoaded}>
+              {this.props.children}
+            </Show>
           </div>
         </Show>
 
@@ -45,6 +64,7 @@ class Home extends Component {
         </Show>
 
         <NewProjectPopup requestClose={this.closePopup} open={this.state.newProjectPopupOpened} />
+        <LoadingSpinner isLoading={!this.state.isLoaded}/>
       </Grid>
     );
   }

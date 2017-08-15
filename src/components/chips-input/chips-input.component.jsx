@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import Chip from 'material-ui/Chip';
-import margin from '../utils/margin.component.jsx';
+import Margin from '../utils/margin.component.jsx';
 import Avatar from 'material-ui/Avatar';
 import './chips-input.style.scss';
 
@@ -73,7 +73,7 @@ class ChipsInput extends Component {
                    helperText={this.state.error}>
         </TextField>
 
-        {margin(8)}
+        <Margin height={8}/>
 
         <div className = "chips">
           {this.state.chips.map(chip => renderChip(chip))}

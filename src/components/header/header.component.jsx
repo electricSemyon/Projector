@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Show from '../utils/show.jsx';
 import UserMenu from '../user-menu/user-menu.component.jsx';
 import Dropdown from '../project-select-dropdown/dropdown.container.jsx';
+import NotificationBadge from './notification-badge.component.jsx';
 
 import Badge from 'material-ui/Badge';
 import MailIcon from 'material-ui-icons/Mail';
@@ -36,6 +37,10 @@ class Header extends React.Component {
     this.setState({user: nextProps.user})
   }
 
+  renderActivityDialog() {
+
+  }
+
   render() {
     return (
           <AppBar>
@@ -49,9 +54,7 @@ class Header extends React.Component {
               </Show>
 
               <Show ifTrue={this.props.user} style={{marginLeft: 'auto'}}>
-                <Badge badgeContent={14} color="accent" className="mail-badge">
-                  <MailIcon />
-                </Badge>
+                <NotificationBadge count={1} className="mail-badge"/>
 
                 <UserMenu avatar={this.props.user ? this.props.user.avatar : ''}
                           user={this.props.user || {}}

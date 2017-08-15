@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import Avatar from 'material-ui/Avatar';
-import { LinearProgress } from 'material-ui/Progress';
-import IconButton from 'material-ui/IconButton';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import Show from '../utils/show.jsx';
 import Margin from '../utils/margin.component.jsx';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 import './board.style.scss'
 
@@ -19,8 +18,18 @@ class Board extends React.Component {
     return (
       <div className="board">
         <div className="column">
-          <Paper className="column-header" style={{backgroundColor: '#FFDB7F'}}>
-            <Typography type="title">To do</Typography>
+          <Paper className="column-header" style={{backgroundColor: 'rgb(181, 63, 63)'}}>
+            <Typography style={{color: '#fff'}} type="title">
+              To do
+            </Typography>
+          </Paper>
+
+          <Margin height={16}/>
+
+          <Paper className="new-ticket-input">
+            <TextField fullWidth multiline placeholder="Describe your issue" rows="2" rowsMax="4"/>
+            <Margin height={8}/>
+            <Button raised className="full-width">create issue</Button>
           </Paper>
 
           <Margin height={16}/>

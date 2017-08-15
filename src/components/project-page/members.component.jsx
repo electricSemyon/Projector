@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import AddButton from '../fab-buttons/add-fab-button.component.jsx';
+import Button from 'material-ui/Button';
+import PersonAddIcon from 'material-ui-icons/PersonAdd';
 import Typography from 'material-ui/Typography';
 
 import MemberInviteMenu from './member-invite.component.jsx';
@@ -37,7 +38,10 @@ class MembersList extends Component {
         <List>
           {members.map(Member)}
         </List>
-        <AddButton onClick={this.toggleInviteMenu}/>
+
+        <Button fab color="primary" onClick={this.toggleInviteMenu} style={{position: 'absolute', bottom: 16, right: 16}}>
+          <PersonAddIcon />
+        </Button>
 
         <MemberInviteMenu isOpen={this.state.isInviteMenuOpen}
                           anchor={this.state.abbButtonAnchor}

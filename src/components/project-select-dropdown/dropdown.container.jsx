@@ -12,14 +12,6 @@ const mapStateToProps = store => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getProjectsList() {
-    return dispatch(projects.getProjectsList());
-  },
-
-  getLatestProject() {
-    return dispatch(projects.getLatestProject());
-  },
-
   switchCurrentProject(id) {
     return dispatch(projects.switchCurrentProject(id));
   }

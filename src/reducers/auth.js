@@ -20,6 +20,15 @@ const authReducer = (store = {}, action) => {
         boards: null
       };
 
+    case 'RECEIVE_INVITES':
+      return {
+        ...store,
+        user: {
+          ...store.user,
+          invites: action.payload
+        }
+      }
+
     default:
       return store;
   }

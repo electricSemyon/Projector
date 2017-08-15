@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 import { Link } from 'react-router';
 
 import Input from '../input-field/validating-input.component.jsx';
-import margin from '../utils/margin.component.jsx';
+import Margin from '../utils/margin.component.jsx';
 import validate from '../../utils/validate';
 import './login.style.scss';
 
@@ -37,17 +37,17 @@ class Login extends React.Component {
             <Paper elevation={4} style={{'padding': '20px', 'marginTop': '-50px'}}>
               <form onSubmit={this.handleLogin}>
                 <Typography type="headline" component="h2"> LOGIN </Typography>
-                {margin(24)}
+                <Margin height={24}/>
 
                 <Input label="Email" type="email" fullWidth={true}
                        handleChange={value => this.setState({email: value})}
                        validate={value => validate('email', value)}/>
-                {margin(16)}
+                <Margin height={16}/>
 
                 <Input label="Password" type="password" fullWidth={true}
                        handleChange={value => this.setState({password: value})}
                        validate={value => validate('password', value)}/>
-                {margin(16)}
+                <Margin height={16}/>
 
                 <div className="login-buttons-container" style={{'textAlign': 'right'}}>
                   <Link to="/signup" >

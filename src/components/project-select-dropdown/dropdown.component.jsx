@@ -3,6 +3,7 @@ import Button from 'material-ui/Button';
 import Menu, {MenuItem} from 'material-ui/Menu';
 import KeyboardArrowDownIcon from 'material-ui-icons/KeyboardArrowDown';
 import Avatar from 'material-ui/Avatar';
+import ProjectIcon from 'material-ui-icons/Folder'
 import './dropdown.style.scss';
 
 import Show from '../utils/show.jsx';
@@ -20,12 +21,6 @@ class Dropdown extends Component {
     };
 
     this.handleRequestClose = this.handleRequestClose.bind(this);
-  }
-
-  componentWillMount() {
-    this.props.getProjectsList()
-      .then(() => this.props.getLatestProject())
-      .catch(err => console.log(err));
   }
 
   handleClickListItem(id) {
@@ -58,7 +53,7 @@ class Dropdown extends Component {
                   style={{color: '#ddd', fontWeight: 600}}
                   onClick={e => this.setState({open: true, anchor: e.target})}>
             <MenuIcon>
-              <Avatar className="project-icon" src={latest.icon}/>
+              <ProjectIcon className="project-icon" />
             </MenuIcon>
             {latest.title}
             <KeyboardArrowDownIcon/>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Menu, {MenuItem} from 'material-ui/Menu';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import margin from '../utils/margin.component.jsx';
+import Margin from '../utils/margin.component.jsx';
 import ChipsInput from '../chips-input/chips-input.component.jsx';
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
@@ -57,7 +57,7 @@ class MemberInvite extends React.Component {
         <div className="no-outline">
           <ChipsInput onAddChip={this.handleEmailAdd} middleware={this.handleEmailChange}/>
 
-          {margin(32)}
+          <Margin height={32}/>
 
           <Button color="primary" raised className="full-width" onClick={this.sendInvites}>send invites</Button>
         </div>

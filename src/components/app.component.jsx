@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.props.getUser();
+    //this.props.getUser();
   }
 
   render() {

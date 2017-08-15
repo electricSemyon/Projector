@@ -6,7 +6,7 @@ import Button from 'material-ui/Button';
 import BoardItem from './board-item.jsx';
 import AddButton from '../fab-buttons/add-fab-button.component.jsx';
 
-import margin from '../utils/margin.component.jsx';
+import Margin from '../utils/margin.component.jsx';
 import Show from '../utils/show.jsx';
 import './boards-list.style.scss';
 
@@ -21,10 +21,8 @@ class BoardsList extends Component {
     this.createBoard = this.createBoard.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props.currentProject, nextProps.currentProject)
-    if(this.props.currentProject != nextProps.currentProject)
-      this.props.getBoardsList(nextProps.currentProject._id);
+  componentWillMount() {
+    this.props.getBoardsList(this.props.currentProject._id);
   }
 
   toggleAddMenu(e) {
@@ -72,10 +70,10 @@ class BoardsList extends Component {
         <div className="no-outline">
           <TextField id="board-title" fullWidth label="Board title" marginForm
                      onChange={this.handleTitleChange}/>
-          {margin(12)}
+          <Margin height={12}/>
           <TextField id="board-description" fullWidth label="Board description" marginForm
                      onChange={this.handleDescriptionChange}/>
-          {margin(32)}
+          <Margin height={32}/>
           <Button color="primary" raised className="full-width" onClick={this.createBoard}>create board</Button>
         </div>
       </Menu>);

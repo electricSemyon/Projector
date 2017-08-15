@@ -6,7 +6,7 @@ import Grid from 'material-ui/Grid';
 
 import Input from '../input-field/validating-input.component.jsx';
 import UploadFile from '../file-upload/file-upload.component.jsx';
-import margin from '../utils/margin.component.jsx';
+import Margin from '../utils/margin.component.jsx';
 import validate from '../../utils/validate';
 
 class Signup extends React.Component {
@@ -66,21 +66,21 @@ class Signup extends React.Component {
             <Paper elevation={4} style={{'padding': '20px', 'marginTop': '-70px'}}>
               <form onSubmit={this.handleSignup}>
                 <Typography type="headline" component="h2"> SIGN UP </Typography>
-                {margin(24)}
+                <Margin height={24}/>
                 <Input label="Email" type="email" fullWidth={true}
                        handleChange={value => this.setState({email: value})}
                        validate={value => validate('email', value)}/>
-                {margin(16)}
+                <Margin height={16}/>
 
                 <Input label="Username" type="text" fullWidth={true}
                        handleChange={value => this.setState({username: value})}
                        validate={value => validate('username', value)}/>
-                {margin(16)}
+                <Margin height={16}/>
 
                 <Input label="Password" type="password" fullWidth={true}
                        handleChange={value => this.setState({password: value})}
                        validate={value => validate('password', value)}/>
-                {margin(16)}
+                <Margin height={16}/>
 
                 <UploadFile accept="image/x-png, image/gif, image/jpeg"
                             buttonStyle={{style: { marginBottom: '10px'} }}

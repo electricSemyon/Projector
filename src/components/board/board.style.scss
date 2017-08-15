@@ -2,14 +2,27 @@
   padding: 32px;
 
   .column {
-    width: 300px;
+    width: 250px;
 
     .column-header {
-      padding: 16px;
+      padding: 12px;
+
+      .title {
+        color: #fff;
+      }
+      .column-header-menu-button {
+        margin-left: 130px;
+        width: 26px;
+        height: 26px;
+      }
     }
 
     .ticket {
       padding: 16px;
     }
+  }
+
+  .new-ticket-input {
+    padding: 16px;
   }
 }
