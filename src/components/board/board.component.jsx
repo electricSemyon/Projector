@@ -7,11 +7,16 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
+import Ticket from './ticket.component.jsx';
+
 import './board.style.scss'
 
 class Board extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      dragging: false
+    }
   }
 
   render() {
@@ -34,9 +39,15 @@ class Board extends React.Component {
 
           <Margin height={16}/>
 
-          <Paper className="ticket">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, consequatur dolorum ea earum enim eum ex inventore maxime numquam quis, quos repellat? Ab alias amet assumenda aut, culpa dicta est, illo molestiae necessitatibus non nostrum, quaerat rem similique soluta vero?
-          </Paper>
+          <Ticket label="Hello, i am Slaventy`s ticket"
+                  id={1488}
+                  isPicked={false}/>
+
+          <Margin height={16}/>
+
+          <Ticket label="My application is piece of dog shit. What can i do about it?"
+                  id={1337}
+                  isPicked={false}/>
         </div>
       </div>
     )
