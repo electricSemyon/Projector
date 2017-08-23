@@ -6,6 +6,7 @@ import { LinearProgress } from 'material-ui/Progress';
 import IconButton from 'material-ui/IconButton';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
+import {Link} from 'react-router';
 import Show from '../utils/show.jsx';
 
 import './boards-list.style.scss';
@@ -23,13 +24,13 @@ const Count = ({count, things}) =>
     <Typography type="body1" component="p" color="secondary">{things}</Typography>
   </div>;
 
-const BoardsItem = ({members = [], name, description, ...props}) =>
+const BoardsItem = ({members = [], name, description, id, ...props}) =>
    <Paper className="board-item" elevation={2}>
      <div className="board-container">
        <Margin height={8}/>
-       <a href="javascript:;">
+       <Link to={`/home/boards/${id}`}>
          <Typography className="board-title" type="title" component="h3">{name}</Typography>
-       </a>
+       </Link>
 
        <Margin height={16}/>
        {(members || []).slice(0, 5).map((member, i) => <Avatar src={member.avatar} key={i} className="member-avatar"/>)}

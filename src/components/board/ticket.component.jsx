@@ -66,6 +66,7 @@ class Ticket extends React.Component {
              }}
              onMouseUp={() => this.setState({isPicked: false})}
              style={{
+               ...this.props.style,
                ...(this.state.isPicked && this.state.position.x && this.state.position.y ? {...hoverStyles} : {})
              }}>
         <a href="javascript:;">{this.props.id}</a>

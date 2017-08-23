@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { push } from 'react-router-redux';
 import tokenInstance from './api/token-instance';
 
 const CREATE_BOARD = 'CREATE_BOARD';
@@ -14,7 +12,7 @@ const createBoard = (boardInfo, projectId) => dispatch =>
     .then(res => dispatch(createBoardSuccess(res)))
     .catch(err => console.log(err));
 
-const getBoardsList = (projectId) => dispatch =>
+const getBoardsList = projectId => dispatch =>
   tokenInstance()
     .get(`/api/projects/${projectId}/boards`)
     .then(res => dispatch(getBoardsSuccess(res.data)))
@@ -24,7 +22,13 @@ const getBoardsList = (projectId) => dispatch =>
       console.log(err)
     });
 
+const getBoard = boardId => dispatch =>
+  tokenInstance()
+    .get(`/api/boards/${boardId}`)
+    .then(res => console.log(res));
+
 export default {
   createBoard,
-  getBoardsList
+  getBoardsList,
+  getBoard
 }

@@ -51,7 +51,7 @@ class BoardsList extends Component {
 
     const boardsList =
       (<div className="boards-list">
-          {boards.map(board => <BoardItem members={board.users} name={board.name} description={board.description}/>)}
+          {boards.map(board => <BoardItem members={board.users} name={board.name} id={board._id} description={board.description}/>)}
        </div>);
 
     const menu = (<Menu

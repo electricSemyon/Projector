@@ -3,6 +3,9 @@
 
   .column {
     width: 250px;
+    margin-right: 32px;
+    display: inline-block;
+    vertical-align: top;
 
     .column-header {
       padding: 12px;
