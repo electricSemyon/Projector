@@ -7,6 +7,7 @@ class Fetch extends React.Component {
     this.state = {
       isLoaded: false
     }
+    console.log('fetch')
   }
 
   componentWillMount() {
@@ -14,8 +15,9 @@ class Fetch extends React.Component {
   }
 
   render() {
+    console.log(this.state.isLoaded)
     return this.state.isLoaded
-        ? this.props.children
+        ? <div>{this.props.children}</div>
         : null
   }
 };

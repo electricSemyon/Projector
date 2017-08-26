@@ -4,7 +4,13 @@ const boardsReducer = (store = {}, action) => {
       return {
         ...store,
         list: action.payload
-      }
+      };
+
+    case 'GET_DETAILED_BOARD':
+      return {
+        ...store,
+        detailed: action.payload
+      };
 
     default:
       return store;
