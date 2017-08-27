@@ -7,6 +7,8 @@ import Typography from 'material-ui/Typography';
 import Margin from '../utils/margin.component.jsx';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
+import ReactEmoji from 'react-emoji';
+
 import './ticket.style.scss';
 
 class Ticket extends React.Component {
@@ -20,7 +22,7 @@ class Ticket extends React.Component {
              ref="ticket">
         <a href="javascript:;">{this.props.id}</a>
         <Margin height={8}/>
-        <Typography component="p">{this.props.label}</Typography>
+        <Typography component="p">{ReactEmoji.emojify(this.props.label)}</Typography>
       </Paper>
     )
   }

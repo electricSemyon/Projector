@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Column from './column.component.jsx';
 import './board.style.scss'
@@ -28,7 +29,11 @@ class Board extends React.Component {
       <div className="board" ref={this.dragulaBoard}>
         {
           this.state.isLoaded
-            ? this.props.board.columns.map(column => <Column title={column.title} list={column.cards} getRef={this.dragulaColumns} />)
+            ? this.props.board.columns.map(column =>
+              <Column title={column.title} id={column._id} list={column.cards}
+                      createTicket={(columnId, description) =>
+                        this.props.createTicket(this.props.board._id, columnId, description)}
+                      getRef={this.dragulaColumns} />)
             : null
         }
       </div>
@@ -42,14 +47,24 @@ class Board extends React.Component {
           || handle.parentNode.classList.contains('column-header'),
         direction: 'horizontal'
       };
-      Dragula([componentBackingInstance], options);
+      const boardDrake = Dragula([componentBackingInstance], options);
+      let fromPos, toPos;
+
+      const handleDragBegin = (e, a) => {
+        console.log(Array.prototype.indexOf.call(a.children, e))
+      };
+
+      const handleDrop = (e, a) => {
+
+      };
+
+      boardDrake.on('drag', handleDragBegin);
+      boardDrake.on('drop', handleDrop);
     }
   };
 
-  dragulaColumns = (componentBackingInstance) => {
-    if (componentBackingInstance)
-      this.state.columnsDrake.containers.push(componentBackingInstance)
-  };
+  dragulaColumns = (componentBackingInstance) =>
+      componentBackingInstance && this.state.columnsDrake.containers.push(componentBackingInstance);
 }
 
 const mapStateToProps = state => ({
@@ -59,6 +74,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getBoard(id) {
     return dispatch(boards.getBoard(id))
+  },
+  createTicket(boardId, columnId, ticket) {
+    console.log(boardId, columnId, ticket)
+    return dispatch(boards.createTicket(boardId, columnId, ticket));
   }
 });
 

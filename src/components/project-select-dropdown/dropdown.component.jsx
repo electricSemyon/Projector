@@ -51,6 +51,7 @@ class Dropdown extends Component {
         <div>
           <Button ref="anchor"
                   style={{color: '#ddd', fontWeight: 600}}
+                  disableRipple
                   onClick={e => this.setState({open: true, anchor: e.target})}>
             <MenuIcon>
               <ProjectIcon className="project-icon" />

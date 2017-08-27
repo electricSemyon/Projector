@@ -3,6 +3,7 @@ import tokenInstance from './api/token-instance';
 const CREATE_BOARD = 'CREATE_BOARD';
 const GET_BOARDS = 'GET_BOARDS';
 const GET_DETAILED_BOARD = 'GET_DETAILED_BOARD';
+const CREATE_TICKET = 'CREATE_TICKET';
 
 const createBoardSuccess = response => ({ type: CREATE_BOARD, payload: response.data });
 const getBoardsSuccess = boards => ({ type: GET_BOARDS, payload: boards });
@@ -30,8 +31,15 @@ const getBoard = boardId => dispatch =>
     .then(res => dispatch(getDetailedBoardSuccess(res.data)))
     .catch(console.log);
 
+const createTicket = (boardId, columnId, description) => dispatch =>
+  tokenInstance()
+    .post('/api/cards', {boardId, columnId, description})
+    .then(console.log);
+  //({ type: CREATE_TICKET, payload: {columnId, ticket} });
+
 export default {
   createBoard,
+  createTicket,
   getBoardsList,
   getBoard
 }

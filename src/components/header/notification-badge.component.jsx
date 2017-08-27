@@ -5,12 +5,12 @@ import IconButton from 'material-ui/IconButton';
 
 const MessagesBadge = ({count, color = 'accent', ...props}) => (
 
-  count ? <IconButton onClick={props.onClick} {...props}>
+  count ? <IconButton disableRipple onClick={props.onClick} {...props}>
             <Badge badgeContent={count} color={color}>
               <NotificationsIcon />
             </Badge>
           </IconButton>
-        : <IconButton onClick={props.onClick} {...props}>
+        : <IconButton disableRipple onClick={props.onClick} {...props}>
             <NotificationsIcon />
           </IconButton>
 );

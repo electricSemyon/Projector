@@ -11,7 +11,7 @@
   > span > div > span {
     height: 20px;
     width: 20px;
-    border: solid 2px #3f51b5;
+    border: solid 2px #333;
   }
 
   > span {
@@ -21,6 +21,10 @@
 
 .header-toolbar {
   padding-left: 40px;
-  height: 62px;
+  height: 50px;
+  min-height: 50px !important;
 }
 
+header {
+  background-color: #333 !important;
+}
