@@ -35,11 +35,22 @@ const createTicket = (boardId, columnId, description) => dispatch =>
   tokenInstance()
     .post('/api/cards', {boardId, columnId, description})
     .then(console.log);
-  //({ type: CREATE_TICKET, payload: {columnId, ticket} });
+
+const moveTicket = (_id, boardId, columnId, position) => dispatch =>
+  tokenInstance()
+    .put('api/cards', {_id, boardId, columnId, position})
+    .then(console.log);
+
+const moveColumn = (columnId, position) => dispatch =>
+  tokenInstance()
+    .put(`api/columns/${columnId}`, {position})
+    .then(console.log);
 
 export default {
+  getBoardsList,
+  getBoard,
   createBoard,
   createTicket,
-  getBoardsList,
-  getBoard
+  moveTicket,
+  moveColumn
 }

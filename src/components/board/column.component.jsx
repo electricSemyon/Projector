@@ -1,19 +1,16 @@
 import React, {Component} from 'react';
-import * as ReactDOM from 'react-dom';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Margin from '../utils/margin.component.jsx';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import Dragula from 'react-dragula';
-
-
+import Show from '../utils/show.jsx';
 import Ticket from './ticket.component.jsx';
 
 import './board.style.scss'
 
-const ColumnHeader = ({title}) => (
-  <Paper className="column-header" style={{backgroundColor: '#f1f8ff'}}>
+const ColumnHeader = ({title, onClick}) => (
+  <Paper className="column-header" style={{backgroundColor: '#f1f8ff'}} onClick={onClick}>
     <Typography type="title">
       {title}
     </Typography>
@@ -28,27 +25,32 @@ const NewTicketInput = ({id, createTicket, onChange, ...props}) => (
   </Paper>
 );
 
-const renderTicketsList = list => list.map(ticket => <Ticket label={ticket.description}
-                                                       id={ticket._id}
-                                                       style={{marginBottom: 12}}/>);
+const renderTicketsList = list =>
+  list.map(ticket => <Ticket label={ticket.description} id={ticket._id} style={{marginBottom: 12}}/>);
 
 class Column extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isNewTicketInputOpened: false,
       newTicketValue: ''
     };
   }
 
   createTicket = () => this.props.createTicket(this.props.id, this.state.newTicketValue);
 
+  toggleNewTicketInput = () => this.setState({isNewTicketInputOpened: !this.state.isNewTicketInputOpened});
+
   render() {
     return (
       <div className={`column ${this.props.id}`}>
-        <ColumnHeader title={this.props.title}/>
+        <ColumnHeader title={this.props.title} onClick={this.toggleNewTicketInput}/>
 
-        <NewTicketInput onChange={e => this.setState({newTicketValue: e.target.value}) }
-                        createTicket={this.createTicket}/>
+        <Show ifTrue={this.state.isNewTicketInputOpened}>
+          <NewTicketInput onChange={e => this.setState({newTicketValue: e.target.value})}
+                          createTicket={this.createTicket}/>
+        </Show>
+
 
         <div className="tickets"  ref={this.props.getRef}>
           {renderTicketsList(this.props.list)}

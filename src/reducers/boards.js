@@ -7,9 +7,14 @@ const boardsReducer = (store = {}, action) => {
       };
 
     case 'GET_DETAILED_BOARD':
+      const sortedColumns = action.payload.columns.slice().sort((a, b) => a.position > b.position);
+
       return {
         ...store,
-        detailed: action.payload
+        detailed: {
+          ...action.payload,
+          columns: sortedColumns
+        }
       };
 
     case 'CREATE_TICKET':

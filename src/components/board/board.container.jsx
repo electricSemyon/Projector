@@ -1,26 +1,33 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Column from './column.component.jsx';
 import './board.style.scss'
 import boards from '../../actions/boards';
 import Dragula from 'react-dragula';
-import Fetch from '../utils/fetch.jsx'
 
 class Board extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      columnsDrake: Dragula([], {
-        moves: (el, container, handle) => handle.classList.contains('ticket')
-          || handle.parentNode.classList.contains('ticket'),
-      }),
       isLoaded: false
-    }
+    };
+
+    this.columnsDrake = Dragula([], {
+      moves: (el, container, handle) => handle.classList.contains('ticket')
+      || handle.parentNode.classList.contains('ticket'),
+    });
   }
 
   componentWillMount() {
+    this.columnsDrake.on('drop', (e, a) => {
+      const ticketId = this.getId(e); //id is always the second class of object. It`s shitcode, needs refactoring. TODO
+      const newTicketPosition = [].map.call(a.children, child => this.getId(child)).indexOf(ticketId);
+
+      this.props.moveColumn(ticketId, newTicketPosition);
+    });
+
     this.props.getBoard(this.props.params.id).then(() => this.setState({isLoaded: true}));
   }
 
@@ -48,23 +55,23 @@ class Board extends React.Component {
         direction: 'horizontal'
       };
       const boardDrake = Dragula([componentBackingInstance], options);
-      let fromPos, toPos;
 
-      const handleDragBegin = (e, a) => {
-        console.log(Array.prototype.indexOf.call(a.children, e))
-      };
-
-      const handleDrop = (e, a) => {
-
-      };
-
-      boardDrake.on('drag', handleDragBegin);
-      boardDrake.on('drop', handleDrop);
+      boardDrake.on('drop', (e, a) =>
+        this.moveThing(e, a, this.props.moveColumn));
     }
   };
 
+  moveThing = (item, container, callback) => {
+    const itemId = this.getId(item); //id is always the second class of object. It`s shitcode, needs refactoring. TODO
+    const newItemPosition = [].map.call(container.children, child => this.getId(child)).indexOf(itemId) + 1;
+
+    callback(itemId, newItemPosition);
+  };
+
   dragulaColumns = (componentBackingInstance) =>
-      componentBackingInstance && this.state.columnsDrake.containers.push(componentBackingInstance);
+      componentBackingInstance && this.columnsDrake.containers.push(componentBackingInstance);
+
+  getId = node => node.classList[1];
 }
 
 const mapStateToProps = state => ({
@@ -72,13 +79,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getBoard(id) {
-    return dispatch(boards.getBoard(id))
-  },
-  createTicket(boardId, columnId, ticket) {
-    console.log(boardId, columnId, ticket)
-    return dispatch(boards.createTicket(boardId, columnId, ticket));
-  }
+  getBoard: (id) => dispatch(boards.getBoard(id)),
+  createTicket: (boardId, columnId, ticket) => dispatch(boards.createTicket(boardId, columnId, ticket)),
+  moveColumn: (_id, position) => dispatch(boards.moveColumn(_id, position))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

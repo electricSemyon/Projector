@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import { Route } from 'react-router';
 import Typography from 'material-ui/Typography';
 import ProjectDrawer from '../project-drawer/project-drawer.component.jsx';
-import ProjectPage from '../project-page/project-page.container.jsx';
 import Grid from 'material-ui/Grid';
 
-import Fetch from '../utils/fetch.jsx';
 import NewProjectPopup from '../new-project-popup/new-project-popup.container.jsx';
 import Show from '../utils/show.jsx';
 import LoadingSpinner from './loading-spinner.component.jsx';
