@@ -49,7 +49,7 @@ module.exports = {
     contentBase: './',
     proxy: [
       {
-        context: ['/auth', '/api', '/uploads'],
+        context: ['/auth', '/api', '/uploads', '/sockets'],
         target:'https://trellolo.com',
         changeOrigin: true //35.187.65.10 || 192.168.88.113
       }
