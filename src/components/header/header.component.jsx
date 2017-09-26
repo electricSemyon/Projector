@@ -1,5 +1,4 @@
 import React from 'react';
-import {createStyleSheet} from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -15,7 +14,7 @@ import FolderIcon from 'material-ui-icons/Folder';
 
 import './header.style.scss';
 
-const styleSheet = createStyleSheet('ButtonAppBar', {
+const styleSheet = theme =>({
   root: {
     marginTop: 30,
   },

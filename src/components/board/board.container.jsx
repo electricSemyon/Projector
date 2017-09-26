@@ -4,7 +4,6 @@ import Column from './column.component.jsx';
 import './board.style.scss'
 import boards from '../../actions/boards';
 import Dragula from 'react-dragula';
-import sockets from './../../sockets/sockets';
 
 class Board extends React.Component {
   constructor(props) {
@@ -18,8 +17,6 @@ class Board extends React.Component {
       moves: (el, container, handle) => handle.classList.contains('ticket')
       || handle.parentNode.classList.contains('ticket'),
     });
-    console.log(sockets)
-    sockets();
   }
 
   componentWillMount() {

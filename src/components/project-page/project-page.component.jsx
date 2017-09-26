@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
@@ -8,12 +8,12 @@ import MembersList from './members.component.jsx';
 
 import './project-page.style.scss';
 
-const styleSheet = createStyleSheet('Tabs', theme => ({
+const styleSheet = theme => ({
   root: {
     flexGrow: 1,
     marginTop: theme.spacing.unit * 3,
   },
-}));
+});
 
 const tabStyle = {height: 61};
 

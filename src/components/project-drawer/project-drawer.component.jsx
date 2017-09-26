@@ -37,7 +37,7 @@ class ProjectDrawer extends Component {
     );
 
     return (
-      <Drawer open={true} docked={true} className="project-drawer">
+      <Drawer open={true} type="permanent" className="project-drawer">
         <div className="content">
           <List disablePadding>
             {menu.map(menuItem)}
